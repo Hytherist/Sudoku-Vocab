@@ -55,3 +55,23 @@
     - When a user is playing the game, there is a timer to keep track of the time. When the game is completed, the user has the option to enter the score in the leaderboard. The leaderboard is categorized by difficulty, and displays the username and time taken, ranked by time.
 
     <img src="/img/leaderboard.jpg" width="70%" />
+
+7.  As a language learner, I want an option to change to another language, so that there are more varieties of languages to learn.
+
+    - When the user opens the app, they are shown the Home page which includes a dropdown from which the user can select the language they are interested in learning. Once the user clicks on one of the language options, they are able to add word pairs into the Dictionary. Once the desired words they wish to play with are added to the Dictionary, they can select the “Start game” button and a new Sudoku game with those words is created.
+
+    <p float="left">
+    <img src="/img/language.jpg" width="49%">
+    <img src="/img/language2.jpg" width="49%">
+    </p>
+
+8.  As a language teacher, I want to add new words, so that my students can learn specific words and enrich their vocabulary pool.
+
+    - On the home page, there is a button that allows the user to add words to a Dictionary. The user will be able to add word pairings by filling in textboxes and clicking the “Add to Dictionary” button to add the pair of words to the Dictionary. Once at least nine words have been added to the dictionary, users have the ability to select which words they would like to generate a Sudoku board with. Lastly, by clicking on the start game button, a Sudoku board with words from the language the user knows appear on the board while words from the language the user is trying to learn are in the form of buttons.
+
+    <p float="left">
+    <img src="/img/dictionary.jpg" width="49%">
+    <img src="/img/dictionary2.jpg" width="49%">
+    </p>
+
+    <img src="/img/dictionary3.jpg" width="49%">
