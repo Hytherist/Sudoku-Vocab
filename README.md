@@ -40,3 +40,18 @@
 4.  As a language learner, I want to progressively learn new word sets, so that I can feel a sense of accomplishment as I learn the language.
 
     - When a user selects to play the progressive levels gamemode, they will be given levels that they must complete before moving onto the next. Each level will not necessarily get progressively harder, rather each level is a defined category of words the user will be focusing on and to beat the level the user must complete the sudoku within a time limit. Users who try to advance to the next level without completing the previous will be prompted with an error that tells them the level they must complete to unlock this.
+
+5.  As a novice user, I want a help menu, so that I can learn the rules of the game.
+
+    - When a user selects the 'Help' button, a dialog pops up to explain the rules of the game.
+
+    <p float="left">
+    <img src="/img/help.jpg" width="49%">
+    <img src="/img/help2.jpg" width="49%">
+    </p>
+
+6.  As an expert user, I want a leaderboard, so that I can showcase my learning accomplishments.
+
+    - When a user is playing the game, there is a timer to keep track of the time. When the game is completed, the user has the option to enter the score in the leaderboard. The leaderboard is categorized by difficulty, and displays the username and time taken, ranked by time.
+
+    <img src="/img/leaderboard.jpg" width="70%" />
