@@ -20,6 +20,8 @@
     <img src="/img/onDelete_done.jpg" width="33%" />
     </p>
 
+    <br>
+
 2.  As a novice user, I want hints for words that I don't know, so that I can still progress through the game.
 
     - When a user gets stuck, tapping on hint button will randomly fill in a grid with the correct answer.
@@ -31,15 +33,21 @@
 
     - When a user doesn't know a word, highlighting a word then tapping on the hint button will provide an explanation of the word.
 
+    <br>
+
 3.  As an expert user, I want an option for harder difficulties, so that I can reinforce my learning.
 
     - When a user selects to play a random generated game, they will be prompted with three choices of difficulty, easy, medium and hard. Easy will allow the player to know if the word placement was incorrect real-time and more initial given words in the grid. Medium will reduce the initial given words as well as no real-time validation. As for hard, the player will be given a time limit as well, even less initial given words and no real-time validation to challenge the player's true understanding.
 
     <img src="/img/difficulty.jpeg" width="50%" />
 
+    <br>
+
 4.  As a language learner, I want to progressively learn new word sets, so that I can feel a sense of accomplishment as I learn the language.
 
     - When a user selects to play the progressive levels gamemode, they will be given levels that they must complete before moving onto the next. Each level will not necessarily get progressively harder, rather each level is a defined category of words the user will be focusing on and to beat the level the user must complete the sudoku within a time limit. Users who try to advance to the next level without completing the previous will be prompted with an error that tells them the level they must complete to unlock this.
+
+    <br>
 
 5.  As a novice user, I want a help menu, so that I can learn the rules of the game.
 
@@ -50,11 +58,15 @@
     <img src="/img/help2.jpg" width="49%">
     </p>
 
+    <br>
+
 6.  As an expert user, I want a leaderboard, so that I can showcase my learning accomplishments.
 
     - When a user is playing the game, there is a timer to keep track of the time. When the game is completed, the user has the option to enter the score in the leaderboard. The leaderboard is categorized by difficulty, and displays the username and time taken, ranked by time.
 
     <img src="/img/leaderboard.jpg" width="70%" />
+
+    <br>
 
 7.  As a language learner, I want an option to change to another language, so that there are more varieties of languages to learn.
 
@@ -64,6 +76,8 @@
     <img src="/img/language.jpg" width="49%">
     <img src="/img/language2.jpg" width="49%">
     </p>
+
+    <br>
 
 8.  As a language teacher, I want to add new words, so that my students can learn specific words and enrich their vocabulary pool.
 
