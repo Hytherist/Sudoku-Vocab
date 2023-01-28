@@ -39,13 +39,22 @@
 
     - When a user selects to play a random generated game, they will be prompted with three choices of difficulty, easy, medium and hard. Easy will allow the player to know if the word placement was incorrect real-time and more initial given words in the grid. Medium will reduce the initial given words as well as no real-time validation. As for hard, the player will be given a time limit as well, even less initial given words and no real-time validation to challenge the player's true understanding.
 
-    <img src="/img/difficulty.jpeg" width="50%" />
+    <p float="left">
+    <img src="/img/difficulty.jpeg" width="49%" />
+    <img src="/img/difficulty_easy.png" width="49%" />
+    </p>
+    <p float="left">
+    <img src="/img/difficulty_medium.png" width="49%" />
+    <img src="/img/difficulty_hard.png" width="49%" />
+    </p>
 
     <br>
 
 4.  As a language learner, I want to progressively learn new word sets, so that I can feel a sense of accomplishment as I learn the language.
 
     - When a user selects to play the progressive levels gamemode, they will be given levels that they must complete before moving onto the next. Each level will not necessarily get progressively harder, rather each level is a defined category of words the user will be focusing on and to beat the level the user must complete the sudoku within a time limit. Users who try to advance to the next level without completing the previous will be prompted with an error that tells them the level they must complete to unlock this.
+
+    <img src="/img/progressive.png" width="70%" />
 
     <br>
 
