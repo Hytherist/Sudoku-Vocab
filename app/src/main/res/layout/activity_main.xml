@@ -7,8 +7,31 @@
     <TableLayout
         android:id="@+id/sudoku_table"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="*">
+        android:layout_height="wrap_content">
+<!--        android:stretchColumns="*"-->
+        <TableRow>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_weight="0"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_weight="0"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_weight="0"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_weight="0"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+        </TableRow>
+
     </TableLayout>
 
 </LinearLayout>
