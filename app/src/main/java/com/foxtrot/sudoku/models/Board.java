@@ -6,8 +6,8 @@ public class Board {
 
     private int[][] values;
 
-    public Board(int size) {
-        this.size = size;
+    public Board(BoardSize boardSize) {
+        this.size = boardSize.getSize();
         values = new int[size][size];
     }
 
@@ -23,7 +23,7 @@ public class Board {
         values[row][col] = value;
     }
 
-    public void validate() {
-        // TODO: validate the current board with solution
+    public int getSize() {
+        return size;
     }
 }
