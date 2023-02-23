@@ -5,12 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class BoardTest {
-    private static final int[][] SUDOKU_QUESTION_4X4 = {
-            {0, 1, 4, 0},
-            {0, 0, 0, 3},
-            {0, 3, 0, 0},
-            {2, 4, 0, 1},
-    };
+
+    private static final int[][] SUDOKU_QUESTION_4X4 = { { 0, 1, 4, 0 }, { 0, 0, 0, 3 }, { 0, 3, 0, 0 }, { 2, 4, 0, 1 } };
 
     @Test
     public void testBoardCreation() {
@@ -49,6 +45,5 @@ public class BoardTest {
     }
 
     @Test
-    public void getSize() {
-    }
+    public void getSize() {}
 }
