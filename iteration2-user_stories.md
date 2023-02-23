@@ -35,9 +35,8 @@
     
 
 
-Iteration 3 - To be implemented features
+## Iteration 3 - To be implemented features
 
-# Additional Requirements - User Stories and TDD
 
 # Different Devices
 
@@ -54,7 +53,7 @@ Iteration 3 - To be implemented features
     -  When the user rotates the screen from portrait to landscape mode, the app detects the change internally and adjusts the app features accordingly. The landscape view allows for longer words to be visible in larger fonts and thus the Sudoku board is placed to one side of the screen to broaden the cells in the boards to
        showcase the longer words. The gameplay buttons are placed parallel to the sudoku board so that the user can easily click on a button and add words to the board. The core functionality of the game remains the same regardless of portrait or landscape mode.
     <p float="left">
-    <img src="/img/landscape-potrait.PNG" width="33%" />
+    <img src="/img/landscape-potrait.PNG" width="50%" />
     </p>
 
 
@@ -79,12 +78,12 @@ Iteration 3 - To be implemented features
 
 
 
-
+# Additional Features
 
 For the upcoming iteration, we hope to implement the above outlined features as well additional gameplay features to enhance the user's language learning experience.
 Below are the features that have carried over from Iteration 1 which we we will be implementing for Iteration 3:
 
-1.  As a novice user, the user interface user interface an easy-to-use , so that I don't get frustrated while playing.
+1.  As a novice user, the user interface user interface an easy-to-use, so that I don't get frustrated while playing.
 
     - When a user plays the game, pressing on the grid will highlight it, and tapping on the word will place that word into the grid.
 
@@ -97,7 +96,7 @@ Below are the features that have carried over from Iteration 1 which we we will 
     - When a user plays the game, pressing on the grid will highlight it, and then pressing the delete button will remove the word from that grid.
 
     <p float="left">
-    <img src="/img/onDelete_initial.jpg" width="33%" />
+    <img src="/img/onDelete_initial.jpg" width="33%"  />
     <img src="/img/onDelete_2.jpg" width="33%" /> 
     <img src="/img/onDelete_done.jpg" width="33%" />
     </p>
@@ -105,7 +104,7 @@ Below are the features that have carried over from Iteration 1 which we we will 
     - When the user clicks on the undo button, the most recent action is reverted
 
     <p float="left">
-    <img src="/img/undoimg.jpg" width="33%" />
+    <img src="/img/undoimg.jpg" width="33%"  />
     </p>
     
     <br>
@@ -115,8 +114,8 @@ Below are the features that have carried over from Iteration 1 which we we will 
     - When a user gets stuck, tapping on hint button will randomly fill in a grid with the correct answer.
 
     <p float="left">
-    <img src="/img/onHint_initial.jpg" width="49%" />
-    <img src="/img/onHint_done.jpg" width="49%" />
+    <img src="/img/onHint_initial.jpg" width="33%" />
+    <img src="/img/onHint_done.jpg" width="33%" />
     </p>
 
     - When a user doesn't know a word, highlighting a word then tapping on the hint button will provide an explanation of the word.
@@ -126,7 +125,7 @@ Below are the features that have carried over from Iteration 1 which we we will 
 4.  As a language learner, I want to progressively learn new word sets, so that I can feel a sense of accomplishment as I learn the language.
     - When a user selects to play the progressive levels gamemode, they will be given levels that they must complete before moving onto the next. Each level will not necessarily get progressively harder, rather each level is a defined category of words the user will be focusing on and to beat the level the user must complete the sudoku within a time limit. Users who try to advance to the next level without completing the previous will be prompted with an error that tells them the level they must complete to unlock this.
 
-    <img src="/img/progressive.png" width="70%" />
+    <img src="/img/progressive.png" width="50%" />
     <br>
 
 5.  As a novice user, I want a help menu, to learn the rules of the game and to learn about app features 
