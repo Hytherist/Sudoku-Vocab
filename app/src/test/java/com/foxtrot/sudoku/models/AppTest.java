@@ -2,23 +2,23 @@ package com.foxtrot.sudoku.models;
 
 import static org.junit.Assert.*;
 
-import org.junit.Test;
-
 import java.util.Map;
 import java.util.Objects;
+import org.junit.Test;
 
 public class AppTest {
-    private static final int[][] SUDOKU_QUESTION_4X4 = {{0, 1, 4, 0}, {0, 0, 0, 3}, {0, 3, 0, 0}, {2, 4, 0, 1}};
-    private static final int[][] SUDOKU_SOLUTION_4X4 = {{3, 1, 4, 2}, {4, 2, 1, 3}, {1, 3, 2, 4}, {2, 4, 3, 1}};
+
+    private static final int[][] SUDOKU_QUESTION_4X4 = { { 0, 1, 4, 0 }, { 0, 0, 0, 3 }, { 0, 3, 0, 0 }, { 2, 4, 0, 1 } };
+    private static final int[][] SUDOKU_SOLUTION_4X4 = { { 3, 1, 4, 2 }, { 4, 2, 1, 3 }, { 1, 3, 2, 4 }, { 2, 4, 3, 1 } };
     private final Map<Integer, Pair<String, String>> wordMap = Map.of(
-            1,
-            new Pair<>("Hello", "Bonjour"),
-            2,
-            new Pair<>("Goodbye", "Au revoir"),
-            3,
-            new Pair<>("Yes", "Oui"),
-            4,
-            new Pair<>("No", "Non")
+        1,
+        new Pair<>("Hello", "Bonjour"),
+        2,
+        new Pair<>("Goodbye", "Au revoir"),
+        3,
+        new Pair<>("Yes", "Oui"),
+        4,
+        new Pair<>("No", "Non")
     );
     App app = new App();
     BoardSize boardSize = BoardSize._4X4;
