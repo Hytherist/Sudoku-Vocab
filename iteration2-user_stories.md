@@ -53,7 +53,7 @@
     -  When the user rotates the screen from portrait to landscape mode, the app detects the change internally and adjusts the app features accordingly. The landscape view allows for longer words to be visible in larger fonts and thus the Sudoku board is placed to one side of the screen to broaden the cells in the boards to
        showcase the longer words. The gameplay buttons are placed parallel to the sudoku board so that the user can easily click on a button and add words to the board. The core functionality of the game remains the same regardless of portrait or landscape mode.
     <p float="left">
-    <img src="/img/landscape-potrait.PNG" width="50%" />
+    <img src="/img/landscape-potrait.PNG" width="55%" />
     </p>
 
 
