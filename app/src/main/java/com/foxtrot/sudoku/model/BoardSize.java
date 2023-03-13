@@ -1,4 +1,4 @@
-package com.foxtrot.sudoku.models;
+package com.foxtrot.sudoku.model;
 
 public enum BoardSize {
     _4X4(4, 2, 2),
