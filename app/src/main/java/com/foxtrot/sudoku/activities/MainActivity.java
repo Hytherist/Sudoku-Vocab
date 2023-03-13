@@ -1,10 +1,12 @@
 package com.foxtrot.sudoku.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TableLayout;
@@ -27,12 +29,25 @@ public class MainActivity extends AppCompatActivity {
     private App app;
 
     // TODO: ask for user input
-    private BoardSize boardSize = BoardSize._4X4;
+    public static BoardSize boardSize = BoardSize._4X4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("new_boardSize_value9")) {
+            boardSize = BoardSize._9X9;
+        }
+        if (intent != null && intent.hasExtra("new_boardSize_value12")) {
+            boardSize = BoardSize._12X12;
+        }
+        if (intent != null && intent.hasExtra("new_boardSize_value4")) {
+            boardSize = BoardSize._4X4;
+        }
+        if (intent != null && intent.hasExtra("new_boardSize_value6")) {
+            boardSize = BoardSize._6X6;
+        }
         // Create the model
         app = new App();
         app.start(boardSize);
@@ -41,6 +56,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         displayBoard();
         addSubmitButton();
+        configureBackButton();
+    }
+
+    private void configureBackButton(){
+        Button backButton = (Button) findViewById(R.id.backHome_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, HomePageActivity1.class));
+            }
+        });
     }
 
     private void displayBoard() {

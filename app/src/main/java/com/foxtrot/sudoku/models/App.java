@@ -11,6 +11,23 @@ public class App {
     // TODO: load solution from DB
     private static int[][] SUDOKU_SOLUTION_4X4 = { { 3, 1, 4, 2 }, { 4, 2, 1, 3 }, { 1, 3, 2, 4 }, { 2, 4, 3, 1 } };
 
+
+    private static int[][] SUDOKU_QUESTION_9X9 = { {0, 0, 0, 2, 6, 0, 7, 0, 1 }, { 6, 8, 0, 0, 7, 0, 0, 9, 0 }, { 1, 9, 0, 0, 0, 4, 5, 0, 0 }, { 8, 2, 0, 1, 0, 0, 0, 4, 0 }, {0,0,4,6,0,2,9,0,0}, {0,5,0,0,0,3,0,2,8}, {0,0,9,3,0,0,0,7,4}, {0,4,0,0,5,0,0,3,6},{7,0,3,0,1,8,0,0,0} };
+
+    // TODO: load solution from DB
+    private static int[][] SUDOKU_SOLUTION_9X9 =  { {4, 3, 5, 2, 6, 9, 7, 8, 1 }, { 6, 8, 2, 5, 7, 1, 4, 9, 3 }, { 1, 9, 7, 8, 3, 4, 5, 6, 2 }, { 8, 2, 6, 1, 9, 5, 3, 4, 7 }, {3,7,4,6,8,2,9,1,5}, {9,5,1,7,4,3,6,2,8}, {5,1,9,3,2,6,8,7,4}, {2,4,8,9,5,7,1,3,6},{7,6,3,4,1,8,2,5,9} };
+
+
+
+    private static int[][] SUDOKU_QUESTION_6X6 = { {0, 0, 0, 0, 4, 0 }, { 0, 3, 0, 6, 0, 0 }, { 4, 0, 1, 0, 5, 6 }, {6,5,3,0,1,2}, {1,6,5,2,3,0}, {0,0,2,0,6,0} };
+
+    // TODO: load solution from DB
+    private static int[][] SUDOKU_SOLUTION_6X6 =  {  {2, 1, 6, 5, 4, 3 }, { 5, 3, 4, 6, 2, 1 }, { 4, 2, 1, 3, 5, 6 }, {6,5,3,4,1,2}, {1,6,5,2,3,4}, {3,4,2,1, 6,5} };
+
+    private static int[][] SUDOKU_QUESTION_12X12 = { {0, 0, 0, 2, 6, 0, 7, 0, 1 }, { 6, 8, 0, 0, 7, 0, 0, 9, 0 }, { 1, 9, 0, 0, 0, 4, 5, 0, 0 }, { 8, 2, 0, 1, 0, 0, 0, 4, 0 }, {0,0,4,6,0,2,9,0,0}, {0,5,0,0,0,3,0,2,8}, {0,0,9,3,0,0,0,7,4}, {0,4,0,0,5,0,0,3,6},{7,0,3,0,1,8,0,0,0} };
+
+    // TODO: load solution from DB
+    private static int[][] SUDOKU_SOLUTION_12X12 =  { {0, 3, 0, 0, 0, 0, 0, 1, 0, 0,0,0 }, {11,0,0,10,0,5,7,0,4,8,0,6 }, { 0,0,0,4,0,3,10,0,1,0,5,0 }, { 0, 0, 10, 0,12,11,0,0,5,3,0,0}, {0,12,0,0,0,2,6,5,7,0,0,11}, {12,0,0,11,6,7,1,0,0,0,9,0}, {0,0,5,6,0,0,11,10,0,2,0,0}, {0,4,0,2,0,12,5,0,6,0,0,0}, {9,0,6,12,0,4,2,0,10,0,0,8},{0,0,0,0,10,0,0,0,0,0,4,0} };
     private Board board;
 
     private Board solution;
@@ -19,11 +36,24 @@ public class App {
         1,
         new Pair<>("Hello", "Bonjour"),
         2,
-        new Pair<>("Goodbye", "Au revoir"),
+        new Pair<>("Goodbye", "Au Revoir"),
         3,
         new Pair<>("Yes", "Oui"),
         4,
-        new Pair<>("No", "Non")
+        new Pair<>("No", "Non"),
+        5,
+        new Pair<>("Cat", "Chat"),
+        6,
+        new Pair<>("Dog", "Chien"),
+        7,
+        new Pair<>("Strong", "Fort"),
+        8,
+        new Pair<>("Monde", "World"),
+        9,
+        new Pair<>("Jour", "Day"),
+        10,
+        new Pair<>("ii", "lll")
+
     );
 
     public App() {}
@@ -41,9 +71,11 @@ public class App {
             case _4X4:
                 return SUDOKU_QUESTION_4X4;
             case _6X6:
+                return SUDOKU_QUESTION_6X6;
             case _9X9:
+                return SUDOKU_QUESTION_9X9;
             case _12X12:
-                throw new UnsupportedOperationException();
+                return SUDOKU_QUESTION_12X12;
         }
         return null;
     }
@@ -53,9 +85,11 @@ public class App {
             case _4X4:
                 return SUDOKU_SOLUTION_4X4;
             case _6X6:
+                return SUDOKU_SOLUTION_6X6;
             case _9X9:
+                return SUDOKU_SOLUTION_9X9;
             case _12X12:
-                throw new UnsupportedOperationException();
+                return SUDOKU_SOLUTION_12X12;
         }
         return null;
     }
