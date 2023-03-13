@@ -1,10 +1,10 @@
-package com.foxtrot.sudoku.models;
+package com.foxtrot.sudoku.model;
 
 public enum BoardSize {
     _4X4(4, 2, 2),
     _6X6(6, 2, 3),
     _9X9(9, 3, 3),
-    _12X12(12, 4, 4);
+    _12X12(12, 3, 4);
 
     private final int size;
     private final int gridRowSize;

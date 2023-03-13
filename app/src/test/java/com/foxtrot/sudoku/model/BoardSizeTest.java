@@ -1,4 +1,4 @@
-package com.foxtrot.sudoku.models;
+package com.foxtrot.sudoku.model;
 
 import static org.junit.Assert.*;
 
