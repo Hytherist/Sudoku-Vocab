@@ -1,6 +1,12 @@
 package com.foxtrot.sudoku.model;
 
+import android.widget.TextView;
+
+import com.foxtrot.sudoku.controller.MainActivity;
+
+import java.text.CollationElementIterator;
 import java.util.Map;
+import java.util.Stack;
 
 /** Top-level driver class that contains the state of the application. */
 public class App {
@@ -52,6 +58,7 @@ public class App {
     public App() {}
 
     public void start(BoardSize boardSize) {
+
         board = new Board(boardSize);
         board.load(getSudokuQuestion(boardSize));
 
@@ -103,4 +110,20 @@ public class App {
         }
         return true;
     }
+
+    public Integer getHintPosition() {
+        int boxSize = (int) Math.sqrt(board.getSize());
+        for (int i = 0; i < board.getSize(); i++) {
+            for (int j = 0; j < board.getSize(); j++) {
+                if (board.getValue(i, j) != solution.getValue(i, j)) {
+                    int boxRow = i / boxSize;
+                    int boxCol = j / boxSize;
+                    return boxRow * boxSize + boxCol;
+                }
+            }
+        }
+        return null;
+    }
+
+
 }
