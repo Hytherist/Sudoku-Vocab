@@ -1,4 +1,4 @@
-package com.foxtrot.sudoku.activities;
+package com.foxtrot.sudoku.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.foxtrot.sudoku.R;
-import com.foxtrot.sudoku.models.BoardSize;
+import com.foxtrot.sudoku.controller.MainActivity;
+import com.foxtrot.sudoku.model.BoardSize;
 
 public class HomePageActivity1 extends AppCompatActivity {
 
@@ -24,7 +25,6 @@ public class HomePageActivity1 extends AppCompatActivity {
         next4x4Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 //startActivity(new Intent(HomePageActivity1.this, MainActivity.class));
                 Intent intent = new Intent(HomePageActivity1.this, MainActivity.class);
                 intent.putExtra("new_boardSize_value4",BoardSize._4X4);

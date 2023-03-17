@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".activities.HomePageActivity1">
+    tools:context=".controller.HomePageActivity1">
 
     <Button
         android:id="@+id/button_nine"

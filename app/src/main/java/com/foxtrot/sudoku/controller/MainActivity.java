@@ -33,18 +33,18 @@ public class MainActivity extends AppCompatActivity {
     private App app;
 
     // TODO: ask for user input
-    public static BoardSize boardSize = BoardSize._4X4;
+    public static BoardSize boardSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("new_boardSize_value9")) {
-            boardSize = BoardSize._9X9;
-        }
         if (intent != null && intent.hasExtra("new_boardSize_value12")) {
             boardSize = BoardSize._12X12;
+        }
+        if (intent != null && intent.hasExtra("new_boardSize_value9")) {
+            boardSize = BoardSize._9X9;
         }
         if (intent != null && intent.hasExtra("new_boardSize_value4")) {
             boardSize = BoardSize._4X4;
@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayBoard() {
         GridLayout sudokuBoard = findViewById(R.id.sudoku_table);
         int size = boardSize.getSize();
+        
         sudokuBoard.setRowCount(size);
         sudokuBoard.setColumnCount(size);
 
