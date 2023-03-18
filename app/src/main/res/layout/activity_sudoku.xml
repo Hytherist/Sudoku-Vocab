@@ -5,21 +5,20 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/stopwatchTextView"
+        android:id="@+id/stopwatch_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:text="00:00"
+        android:text="@string/stopwatch_time_initial"
         android:textSize="24sp" />
 
     <GridLayout
         android:id="@+id/sudoku_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/stopwatchTextView"
-        android:layout_marginTop="0dp"
-        android:layout_weight="0"></GridLayout>
+        android:layout_below="@id/stopwatch_text_view"
+        android:layout_marginTop="0dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,11 +66,11 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/backHome_button"
+                android:id="@+id/back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/back_Home" />
+                android:text="@string/home" />
 
             <Button
                 android:id="@+id/restart_button"
