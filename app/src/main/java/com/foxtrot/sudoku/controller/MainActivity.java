@@ -1,5 +1,6 @@
 package com.foxtrot.sudoku.controller;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -46,6 +47,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("new_boardSize_value12")) {
+            boardSize = BoardSize._12X12;
+        }
+        if (intent != null && intent.hasExtra("new_boardSize_value9")) {
+            boardSize = BoardSize._9X9;
+        }
+        if (intent != null && intent.hasExtra("new_boardSize_value4")) {
+            boardSize = BoardSize._4X4;
+        }
+        if (intent != null && intent.hasExtra("new_boardSize_value6")) {
+            boardSize = BoardSize._6X6;
+        }
         // Create the model
         app = new App();
         app.start(boardSize);
@@ -54,6 +68,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         displayBoard();
         addSubmitButton();
+        configureBackButton();
+    }
+
+    private void configureBackButton(){
+        Button backButton = (Button) findViewById(R.id.backHome_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, HomePageActivity1.class));
+            }
+        });
 
         addHintButton();
 
@@ -101,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set background
         int toggle = (row / boardSize.getGridRowSize() + col / boardSize.getGridColSize()) % 2;
-        cell.setBackground(ResourcesCompat.getDrawable(getResources(), toggle == 0 ? R.drawable.cellbeige : R.drawable.cellwhite, null));
+        cell.setBackground(ResourcesCompat.getDrawable(getResources(), toggle == 0 ? R.drawable.cellteal : R.drawable.cellwhite, null));
 
         return cell;
     }
@@ -229,8 +254,3 @@ public class MainActivity extends AppCompatActivity {
         board.reset();
         displayBoard();
     }
-
-
-}
-
-
