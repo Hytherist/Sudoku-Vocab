@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Sudoku</string>
     <string name="submit">Submit</string>
+    <string name="hint">Hint</string>
+    <string name="restart">Restart</string>
     <string name="back_Home">Home</string>
     <string name="nine_by_nine">9x9</string>
     <string name="twelve_by_twelve">12x12</string>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
@@ -13,10 +14,13 @@ import android.widget.PopupMenu;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+
 import com.foxtrot.sudoku.R;
+
 import com.foxtrot.sudoku.model.App;
 import com.foxtrot.sudoku.model.Board;
 import com.foxtrot.sudoku.model.BoardSize;
@@ -26,6 +30,8 @@ import com.foxtrot.sudoku.view.SudokuCellView;
 import java.util.Map;
 import java.util.Objects;
 
+
+@com.google.android.material.badge.ExperimentalBadgeUtils
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -33,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private App app;
 
     // TODO: ask for user input
-    public static BoardSize boardSize;
+    private BoardSize boardSize = BoardSize._9X9;
+
+    private int hintCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,14 +79,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, HomePageActivity1.class));
             }
         });
+
+        addHintButton();
+
+        addRestartButton();
     }
 
     private void displayBoard() {
         GridLayout sudokuBoard = findViewById(R.id.sudoku_table);
         int size = boardSize.getSize();
-        
         sudokuBoard.setRowCount(size);
         sudokuBoard.setColumnCount(size);
+
+        sudokuBoard.removeAllViews();
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -141,7 +154,8 @@ public class MainActivity extends AppCompatActivity {
             builder.setTitle("Solution");
 
             if (app.validate()) {
-                builder.setMessage("Correct!");
+                String message = "Correct! You have used <b>\"" + hintCounter + "\"</b> hint(s).";
+                builder.setMessage(Html.fromHtml(message));
             } else {
                 builder.setMessage("Incorrect!");
             }
@@ -152,4 +166,91 @@ public class MainActivity extends AppCompatActivity {
             dialog.show();
         });
     }
-}
+
+    private void addHintButton() { // hint button
+        Button button = findViewById(R.id.hint_button);
+        button.setOnClickListener(view -> {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Hint");
+
+            Map<Integer, Pair<String, String>> wordMap = app.getWordMap();
+
+            Integer hintPosition = app.getHintPosition();
+
+
+            if (hintPosition != null) { // checks if board solved
+                int insideGrid = (int) Math.sqrt(app.getBoard().getSize()); // gets the 2x2, 3x3, 4x4
+                int insideRow = hintPosition / insideGrid; // row
+                int insideCol = hintPosition % insideGrid; // col
+                int cellRow = -1;
+                int cellCol = -1;
+                int[][] currentBoard = app.getBoard().getValues(); // gets the numbers from the array
+                int[][] solution = app.getSolution().getValues();
+                String hint = "";
+
+                for (int i = insideRow * insideGrid; i < insideRow * insideGrid + insideGrid; i++) {
+                    for (int j = insideCol * insideGrid; j < insideCol * insideGrid + insideGrid; j++) {
+                        if (currentBoard[i][j] != solution[i][j]) { // check if currentBoard has a cell thats incorrect/not filled
+                            hint = wordMap.get(solution[i][j]).getSecond(); // sets the string as the hint
+                            cellRow = i;
+                            cellCol = j;
+                            break;
+                        }
+                    }
+                }
+
+                hintCounter++;
+                String message = "The hint is: <b>" + hint + "</b> at position (" + cellCol + ", " + cellRow + ")<br>"
+                        + "You have used \"<b>" + hintCounter + "\"</b> hint(s).";
+
+                builder.setMessage(Html.fromHtml(message));
+            } else {
+                builder.setMessage("Your Solution is correct!");
+            }
+
+
+            builder.setPositiveButton(
+                    "Close",
+                    (dialog, id) -> {
+                        dialog.dismiss();
+                    }
+            );
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        });
+    }
+
+    private void addRestartButton() {
+        Button button = findViewById(R.id.restart_button);
+        button.setOnClickListener(view -> {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Would you like to restart the game?");
+
+            builder.setPositiveButton(
+                    "Yes",
+                    (dialog, id) -> {
+                        reset();
+                    }
+            );
+
+            builder.setNegativeButton(
+                    "No",
+                    (dialog, id) -> {
+                        dialog.dismiss();
+                    }
+            );
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        });
+    }
+
+    private void reset() {
+        Board board = app.getBoard();
+        board.reset();
+        displayBoard();
+    }
