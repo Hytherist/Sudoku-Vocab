@@ -1,9 +1,15 @@
 package com.foxtrot.sudoku.controller;
 
+
+import android.content.res.ColorStateList;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.Menu;
@@ -11,8 +17,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.PopupMenu;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -31,7 +35,6 @@ import java.util.Map;
 import java.util.Objects;
 
 
-@com.google.android.material.badge.ExperimentalBadgeUtils
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -39,9 +42,17 @@ public class MainActivity extends AppCompatActivity {
     private App app;
 
     // TODO: ask for user input
-    private BoardSize boardSize = BoardSize._9X9;
+    private BoardSize boardSize = BoardSize._4X4;
 
     private int hintCounter = 0;
+
+    private long startTime = 0;
+
+    private boolean eraseButtonClicked = false;
+
+    private long stopwatchEndTime;
+    private Handler stopwatchHandler = new Handler();
+    private TextView stopwatchTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
         addHintButton();
 
         addRestartButton();
+
+        addEraseButton();
+
+        startStopwatch();
+
+        stopwatchTextView = findViewById(R.id.stopwatchTextView);
     }
 
     private void displayBoard() {
@@ -126,14 +143,28 @@ public class MainActivity extends AppCompatActivity {
 
         // Set background
         int toggle = (row / boardSize.getGridRowSize() + col / boardSize.getGridColSize()) % 2;
-        cell.setBackground(ResourcesCompat.getDrawable(getResources(), toggle == 0 ? R.drawable.cellteal : R.drawable.cellwhite, null));
+        cell.setBackground(ResourcesCompat.getDrawable(getResources(), toggle == 0 ? R.drawable.cellbeige : R.drawable.cellwhite, null));
 
         return cell;
     }
 
     private void onCellClick(View view, int row, int col) {
+
+        Drawable originalBackground = view.getBackground();
+        Button button = findViewById(R.id.erase_button);
+
+        if (eraseButtonClicked) {
+            ((TextView) view).setText("");
+            eraseButtonClicked = false;
+            view.setBackground(originalBackground);
+            button.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00FF00")));
+            return;
+        }
+
         Map<Integer, Pair<String, String>> wordMap = app.getWordMap();
         PopupMenu popupMenu = new PopupMenu(this, view);
+        view.setBackground(getResources().getDrawable(R.drawable.cellcurrent, null));
+
         for (Map.Entry<Integer, Pair<String, String>> mapping : wordMap.entrySet()) {
             popupMenu.getMenu().add(1, mapping.getKey(), Menu.NONE, mapping.getValue().first);
         }
@@ -144,7 +175,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
+        popupMenu.setOnDismissListener(menu -> {
+            view.setBackground(originalBackground);
+        });
+
         popupMenu.show();
+
+        eraseButtonClicked = false;
     }
 
     private void addSubmitButton() {
@@ -154,7 +191,9 @@ public class MainActivity extends AppCompatActivity {
             builder.setTitle("Solution");
 
             if (app.validate()) {
-                String message = "Correct! You have used <b>\"" + hintCounter + "\"</b> hint(s).";
+                stopStopwatch();
+                String timeText = stopwatchTextView.getText().toString();
+                String message = "Correct! You have used <b>\"" + hintCounter + "\"</b> hint(s)." + "<br>Your time was: " + timeText;
                 builder.setMessage(Html.fromHtml(message));
             } else {
                 builder.setMessage("Incorrect!");
@@ -233,6 +272,8 @@ public class MainActivity extends AppCompatActivity {
                     "Yes",
                     (dialog, id) -> {
                         reset();
+                        resetStopwatch();
+                        startStopwatch();
                     }
             );
 
@@ -253,4 +294,52 @@ public class MainActivity extends AppCompatActivity {
         Board board = app.getBoard();
         board.reset();
         displayBoard();
+        hintCounter = 0;
     }
+
+    private void addEraseButton() {
+        Button button = findViewById(R.id.erase_button);
+        button.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00FF00")));
+
+        button.setOnClickListener(view -> {
+            eraseButtonClicked = true;
+            button.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        });
+    }
+
+    private Runnable stopwatchRunnable = new Runnable() {
+        @Override
+        public void run() {
+            long millis = System.currentTimeMillis() - startTime;
+            int seconds = (int) (millis / 1000);
+            int minutes = seconds / 60;
+            seconds = seconds % 60;
+
+            String time = String.format("%02d:%02d", minutes, seconds);
+
+            if (stopwatchTextView != null) {
+                stopwatchTextView.setText(time);
+            }
+
+            stopwatchHandler.postDelayed(this, 500);
+        }
+    };
+
+    private void startStopwatch() {
+        startTime = System.currentTimeMillis();
+        stopwatchHandler.postDelayed(stopwatchRunnable, 0);
+    }
+
+    private void stopStopwatch() {
+        stopwatchEndTime = SystemClock.elapsedRealtime();
+        stopwatchHandler.removeCallbacks(stopwatchRunnable);
+    }
+
+    private void resetStopwatch() {
+        stopStopwatch();
+        if (stopwatchTextView != null) {
+            stopwatchTextView.setText("00:00");
+        }
+    }
+
+}
