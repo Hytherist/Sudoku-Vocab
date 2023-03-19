@@ -12,4 +12,9 @@
     <string name="easy_level">EASY LEVEL</string>
     <string name="Medium_level">MEDIUM LEVEL</string>
     <string name="Hard_level">HARD LEVEL</string>
+    <string name="erase">Erase</string>
+    <string name="home">Home</string>
+    <string name="medium_level">MEDIUM LEVEL</string>
+    <string name="hard_level">HARD LEVEL</string>
+    <string name="stopwatch_time_initial">00:00</string>
 </resources>

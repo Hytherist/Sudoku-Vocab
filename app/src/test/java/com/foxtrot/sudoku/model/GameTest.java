@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 import org.junit.Test;
 
-public class AppTest {
+public class GameTest {
 
     private static final int[][] SUDOKU_QUESTION_4X4 = { { 0, 1, 4, 0 }, { 0, 0, 0, 3 }, { 0, 3, 0, 0 }, { 2, 4, 0, 1 } };
     private static final int[][] SUDOKU_SOLUTION_4X4 = { { 3, 1, 4, 2 }, { 4, 2, 1, 3 }, { 1, 3, 2, 4 }, { 2, 4, 3, 1 } };
@@ -20,14 +20,14 @@ public class AppTest {
         4,
         new Pair<>("No", "Non")
     );
-    App app = new App();
+    Game game = new Game();
     BoardSize boardSize = BoardSize._4X4;
 
     @Test
     public void start() {
-        app.start(boardSize);
-        Board board = app.getBoard();
-        Board solution = app.getSolution();
+        game.start(boardSize);
+        Board board = game.getBoard();
+        Board solution = game.getSolution();
 
         assertEquals(4, board.getSize());
         for (int i = 0; i < 4; i++) {
@@ -46,8 +46,8 @@ public class AppTest {
 
     @Test
     public void getBoard() {
-        app.start(boardSize);
-        Board board = app.getBoard();
+        game.start(boardSize);
+        Board board = game.getBoard();
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -58,8 +58,8 @@ public class AppTest {
 
     @Test
     public void getSolution() {
-        app.start(boardSize);
-        Board solution = app.getSolution();
+        game.start(boardSize);
+        Board solution = game.getSolution();
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -70,7 +70,7 @@ public class AppTest {
 
     @Test
     public void getWordMap() {
-        Map<Integer, Pair<String, String>> appWordMap = app.getWordMap();
+        Map<Integer, Pair<String, String>> appWordMap = game.getWordMap();
         for (int i = 1; i <= wordMap.size(); i++) {
             assertEquals(Objects.requireNonNull(appWordMap.get(i)).getFirst(), Objects.requireNonNull(wordMap.get(i)).getFirst());
             assertEquals(Objects.requireNonNull(appWordMap.get(i)).getSecond(), Objects.requireNonNull(wordMap.get(i)).getSecond());
@@ -79,13 +79,13 @@ public class AppTest {
 
     @Test
     public void validate() {
-        app.start(boardSize);
-        Board board = app.getBoard();
-        Board solution = app.getSolution();
+        game.start(boardSize);
+        Board board = game.getBoard();
+        Board solution = game.getSolution();
 
-        assertFalse(app.validate());
+        assertFalse(game.validate());
 
         board.load(SUDOKU_SOLUTION_4X4);
-        assertTrue(app.validate());
+        assertTrue(game.validate());
     }
 }
