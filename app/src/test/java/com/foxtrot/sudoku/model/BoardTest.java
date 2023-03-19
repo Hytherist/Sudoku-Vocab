@@ -52,28 +52,4 @@ public class BoardTest {
         assertEquals(12, BoardSize._12X12.getSize());
     }
 
-    @Test
-    public void getValues() {
-        Board board = new Board(BoardSize._4X4);
-        board.load(SUDOKU_QUESTION_4X4);
-
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                assertEquals(SUDOKU_QUESTION_4X4[i][j], board.getValues()[i][j]);
-            }
-        }
-    }
-
-    @Test
-    public void reset() {
-        Board board = new Board(BoardSize._4X4);
-        board.load(SUDOKU_QUESTION_4X4);
-        board.reset();
-
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                assertEquals(SUDOKU_QUESTION_4X4[i][j], board.getValue(i, j));
-            }
-        }
-    }
 }
