@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         configureBackButton();
     }
 
-    private void configureBackButton(){
+    private void configureBackButton() {
         Button backButton = (Button) findViewById(R.id.backHome_button);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set background
         int toggle = (row / boardSize.getGridRowSize() + col / boardSize.getGridColSize()) % 2;
-        cell.setBackground(ResourcesCompat.getDrawable(getResources(), toggle == 0 ? R.drawable.cellteal : R.drawable.cellwhite, null));
+        cell.setBackground(ResourcesCompat.getDrawable(getResources(), toggle == 0 ? R.drawable.cellbeige : R.drawable.cellwhite, null));
 
         return cell;
     }
@@ -254,3 +254,5 @@ public class MainActivity extends AppCompatActivity {
         board.reset();
         displayBoard();
     }
+}
+
