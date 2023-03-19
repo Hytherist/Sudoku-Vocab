@@ -19,9 +19,6 @@ TDD: On the menu page, the user can select the level of difficulty they would li
 
 TDD: Sudoku game users have the ability to play the game on devices with larger screens such as Ipad/Tablet. When the app is initially opened it detects the type of device being used and adjusts accordingly to fit the different screen sizes and displays the sudoku board and buttons in a responsive and organized manner.
 
-2. User Story:  As someone who uses public transport regularly, I want to be able to play the Sudoku game in landscape mode to better read longer words without compromising on the functionally of the game
-
-TDD: When the user rotates the screen from portrait to landscape mode, the app detects the change internally and adjusts the app features accordingly. The landscape view allows for longer words to be visible in larger fonts and thus the Sudoku board is placed to one side of the screen to broaden the cells in the boards to showcase the longer words. The gameplay buttons are placed parallel to the sudoku board so that the user can easily click on a button and add words to the board. The core functionality of the game remains the same regardless of portrait or landscape mode.
 
 <p float="left">
 <img src="/img/portraitTabletHome.png" width="33%" />
@@ -29,6 +26,15 @@ TDD: When the user rotates the screen from portrait to landscape mode, the app d
 </p>
 
 <br>
+
+2. User Story:  As someone who uses public transport regularly, I want to be able to play the Sudoku game in landscape mode to better read longer words without compromising on the functionally of the game
+
+TDD: When the user rotates the screen from portrait to landscape mode, the app detects the change internally and adjusts the app features accordingly. The landscape view allows for longer words to be visible in larger fonts and thus the Sudoku board is placed to one side of the screen to broaden the cells in the boards to showcase the longer words. The gameplay buttons are placed parallel to the sudoku board so that the user can easily click on a button and add words to the board. The core functionality of the game remains the same regardless of portrait or landscape mode.
+
+<p float="left">
+<img src="/img/landscape12x12.png" width="33%" />
+</p>
+
 
 <p float="left">
 <img src="/img/portraitPhoneHome.png" width="33%" />
