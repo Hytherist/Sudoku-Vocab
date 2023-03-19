@@ -17,4 +17,9 @@ public class Pair<T, U> {
     public U getSecond() {
         return second;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

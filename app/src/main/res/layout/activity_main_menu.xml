@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".controller.HomePageActivity1">
+    tools:context=".controller.MainMenuActivity">
 
     <Button
         android:id="@+id/button_nine"
@@ -103,7 +103,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="226dp"
         android:layout_marginBottom="19dp"
-        android:text="@string/Medium_level"
+        android:text="@string/medium_level"
         android:textColor="#AE98D5"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -119,7 +119,7 @@
         android:layout_marginStart="43dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="251dp"
-        android:text="@string/Hard_level"
+        android:text="@string/hard_level"
         android:textColor="#AE98D5"
         android:textSize="20sp"
         android:textStyle="bold"
