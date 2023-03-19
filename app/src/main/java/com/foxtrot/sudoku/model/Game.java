@@ -106,6 +106,8 @@ public class Game {
 
     private Board board;
 
+    private Board question;
+
     private Board solution;
 
     private Map<Integer, Pair<String, String>> wordMap;
@@ -117,6 +119,9 @@ public class Game {
 
         board = new Board(boardSize);
         board.load(getSudokuQuestion(boardSize));
+
+        question = new Board(boardSize);
+        question.load(getSudokuQuestion(boardSize));
 
         solution = new Board(boardSize);
         solution.load(getSudokuSolution(boardSize));
@@ -165,6 +170,10 @@ public class Game {
 
     public Board getBoard() {
         return board;
+    }
+
+    public Board getQuestion() {
+        return question;
     }
 
     public Board getSolution() {
