@@ -87,14 +87,14 @@ public class Game {
 
     private static final List<Pair<String, String>> WORD_PAIR_LIST = List.of(
         new Pair<>("Hello", "Bonjour"),
-        new Pair<>("Goodbye", "Au Revoir"),
+        new Pair<>("Boy", "Garçon"),
         new Pair<>("Yes", "Oui"),
         new Pair<>("No", "Non"),
         new Pair<>("Cat", "Chat"),
         new Pair<>("Dog", "Chien"),
         new Pair<>("Strong", "Fort"),
-        new Pair<>("Monde", "World"),
-        new Pair<>("Jour", "Day"),
+        new Pair<>("World", "Monde"),
+        new Pair<>("Day", "Jour"),
         new Pair<>("Tall", "Grand"),
         new Pair<>("Small", "Petit"),
         new Pair<>("Quiet", "Calme")

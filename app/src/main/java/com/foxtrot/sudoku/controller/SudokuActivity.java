@@ -9,6 +9,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.text.Html;
+
+import android.util.TypedValue;
+import android.view.Gravity;
+
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -136,7 +140,6 @@ public class SudokuActivity extends AppCompatActivity {
     private SudokuCellView initializeCell(int row, int col) {
         int value = game.getBoard().getValue(row, col);
         Pair<String, String> wordPair = game.getWordMap().get(value);
-
         boolean clickable = game.getQuestion().getValue(row, col) == 0;
         SudokuCellView cell = new SudokuCellView(this, boardSize, row, col, clickable, wordPair);
         if (clickable) {
@@ -286,7 +289,7 @@ public class SudokuActivity extends AppCompatActivity {
 
     private void addEraseButton() {
         Button button = findViewById(R.id.erase_button);
-        button.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        button.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
 
         button.setOnClickListener(view -> {
             eraseButtonClicked = true;
