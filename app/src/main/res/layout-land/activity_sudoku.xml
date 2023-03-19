@@ -28,7 +28,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/scroll_view"
+        android:layout_below="@id/stopwatch_text_view"
+        android:layout_toEndOf="@id/scroll_view"
         android:gravity="center"
         android:orientation="vertical">
 

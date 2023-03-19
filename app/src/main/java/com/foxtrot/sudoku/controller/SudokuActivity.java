@@ -2,20 +2,20 @@ package com.foxtrot.sudoku.controller;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.text.Html;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
@@ -89,6 +89,26 @@ public class SudokuActivity extends AppCompatActivity {
         startStopwatch();
     }
 
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_sudoku);
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.activity_sudoku);
+        }
+
+        displayBoard();
+        addSubmitButton();
+        addBackButton();
+        addHintButton();
+        addRestartButton();
+        addEraseButton();
+
+        stopwatchTextView = findViewById(R.id.stopwatch_text_view);
+    }
+
     private void addBackButton() {
         Button backButton = (Button) findViewById(R.id.back_button);
         backButton.setOnClickListener(view -> {
@@ -116,26 +136,12 @@ public class SudokuActivity extends AppCompatActivity {
     private SudokuCellView initializeCell(int row, int col) {
         int value = game.getBoard().getValue(row, col);
         Pair<String, String> wordPair = game.getWordMap().get(value);
-        boolean emptyCell = wordPair == null;
-        SudokuCellView cell = new SudokuCellView(this, boardSize.getSize());
-        cell.setGravity(Gravity.CENTER);
-        if (emptyCell) {
-            Typeface normalTypeface = Typeface.defaultFromStyle(Typeface.NORMAL);
-            cell.setTypeface(normalTypeface);
-            cell.setTextColor(Color.BLUE);
-            cell.setText("");
+
+        boolean clickable = game.getQuestion().getValue(row, col) == 0;
+        SudokuCellView cell = new SudokuCellView(this, boardSize, row, col, clickable, wordPair);
+        if (clickable) {
             cell.setOnClickListener(view -> onCellClick(view, row, col));
-        } else {
-            Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
-            cell.setTypeface(boldTypeface);
-            cell.setTextColor(Color.BLACK);
-            cell.setText(wordPair.second);
         }
-
-        // Set background
-        int toggle = (row / boardSize.getGridRowSize() + col / boardSize.getGridColSize()) % 2;
-        cell.setBackground(ResourcesCompat.getDrawable(getResources(), toggle == 0 ? R.drawable.cell_beige : R.drawable.cell_white, null));
-
         return cell;
     }
 
@@ -207,7 +213,7 @@ public class SudokuActivity extends AppCompatActivity {
             Integer hintPosition = game.getHintPosition();
 
             if (hintPosition != null) { // checks if board solved
-                int insideGrid = (int) Math.sqrt(game.getBoard().getSize()); // gets the 2x2, 3x3, 4x4
+                int insideGrid = (int) Math.sqrt(boardSize.getSize()); // gets the 2x2, 3x3, 4x4
                 int insideRow = hintPosition / insideGrid; // row
                 int insideCol = hintPosition % insideGrid; // col
                 int cellRow = -1;
