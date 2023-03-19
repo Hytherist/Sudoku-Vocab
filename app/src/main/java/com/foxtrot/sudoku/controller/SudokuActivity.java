@@ -82,7 +82,7 @@ public class SudokuActivity extends AppCompatActivity {
         if (intent != null && intent.hasExtra("new_boardSize_value6")) {
             boardSize = BoardSize._6X6;
         }
-        Intent intent = getIntent();
+
         String boardSizeName = intent.getStringExtra(MainMenuActivity.BOARD_SIZE_TAG);
         boardSize = BoardSize.valueOf(boardSizeName);
 
@@ -99,11 +99,11 @@ public class SudokuActivity extends AppCompatActivity {
     }
 
     private void configureBackButton() {
-        Button backButton = (Button) findViewById(R.id.backHome_button);
+        Button backButton = (Button) findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, HomePageActivity1.class));
+                startActivity(new Intent(SudokuActivity.this, MainMenuActivity.class));
             }
         });
 
@@ -319,7 +319,7 @@ public class SudokuActivity extends AppCompatActivity {
         startTime = System.currentTimeMillis();
         stopwatchHandler.postDelayed(stopwatchRunnable, 0);
     }
-}
+
 
     private void stopStopwatch() {
         stopwatchEndTime = SystemClock.elapsedRealtime();
