@@ -1,8 +1,8 @@
 # Foxtrot
 
-## Iteration 3: Implemented user stories
+# Iteration 3: Implemented user stories
 
-# Different Sudoku Grid Sizes: Complete
+## Different Sudoku Grid Sizes: Complete
 (Board sizes 4x4, 6x6, 9x9 and 12x12 are being supported in our current working game. These board sizes are separated by levels of difficulty, with 4x4 and 6x6 being level Easy, 9x9 being level Medium and 12x12 being level Hard)
 
 1. User Story: As a language teacher, I want to personalize the game for my students based on their level of understanding and to meet their language learning goals without making the game unnecessarily difficult or easy.
@@ -13,7 +13,7 @@ TDD: As soon as the app is opened the user can pick the level of difficulty they
 
 TDD: On the menu page, the user can select the level of difficulty they would like to play with and there is an option to play on a 12x12 board for an extra challenge. Once the user selects that option, a 12x12 board is generated on the screen with 12 corresponding word pairs.
 
-# Different Devices: Complete
+## Different Devices: Complete
 (Portrait and Landscape orientations of a phone are being supported in our current working game. In addition, the game can be played on a Tablet as the landscape and portrait orientations of a tablet are also being supported)
 1. User Story: As someone who wants to learn new vocabulary, I prefer playing the language learning Sudoku game on a bigger screen to better view the contents such as longer words and enhance my gameplay experience.
 
@@ -36,7 +36,7 @@ TDD: When the user rotates the screen from portrait to landscape mode, the app d
 </p>
 <br>
 
-# Hint, Erase, Stopwatch  and Reset  Functionality - Complete
+## Hint, Erase, Stopwatch  and Reset  Functionality - Complete
 
 (Users have the ability to get hints if they are stuck; Erase a word if they wish to remove a specific word from the board; Reset the entire board to its initial state by removing all their edits to board)
 1. User Story:  As someone who is learning to play sudoku, I would like to have a feature that helps me when I am stuck.
@@ -60,19 +60,21 @@ TDD: There is a timer built in the Sudoku application that starts as soon as a s
 </p>
 <br>
 
-## To be implemented functionalities for Iteration 4:
+# To be implemented functionalities for Iteration 4:
 
 
-# Listening Comprehension Mode
+## Listening Comprehension Mode
 
 1. User Story: As a language learner,  I want to practice my understanding of spoken words in the language I am learning by hearing the words said out loud.
 
 TDD: On the main menu, the user can select if they would like to play the sudoku game in listening comprehension mode. If this mode is selected, then a board of size either 4x4, 6x6,9x9 or 12x12 is generated with prefilled numbers in the cells. By clicking on these numbers, I am able to hear the words corresponding to each number. For example if a block is labelled 1 and its corresponding word is Bonjour, then once I click on the cell with the number 1, I hear the word “Bonjour” read out. I am also shown English translations of the French words I am learning which I can select from to verify my listening comprehension.
 
 <p float="left">
-<img src="/img/listenModeHome.png" width="33%" />
-<img src="/img/listenModeGrid.png" width="33%" />
+<img src="/img/listenModeHome.jpg" width="33%" />
+<img src="/img/listenModeGrid.jpg" width="33%" />
 </p>
+<br>
+
 ## ------------------------------------------------------------------------------------------------------------------------------------------------
 
 
