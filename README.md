@@ -3,6 +3,7 @@
 # Iteration 3: Implemented user stories
 
 ## Different Sudoku Grid Sizes: Complete
+
 (Board sizes 4x4, 6x6, 9x9 and 12x12 are being supported in our current working game. These board sizes are separated by levels of difficulty, with 4x4 and 6x6 being level Easy, 9x9 being level Medium and 12x12 being level Hard)
 
 1. User Story: As a language teacher, I want to personalize the game for my students based on their level of understanding and to meet their language learning goals without making the game unnecessarily difficult or easy.
@@ -81,10 +82,16 @@ TDD: On the main menu, the user can select if they would like to play the sudoku
 </p>
 <br>
 
-## ------------------------------------------------------------------------------------------------------------------------------------------------
+2. User Story: As a language learner,  I want to the ability to choose which language is displayed on the board and which language the buttons are in
+
+TDD: On the Home page, the user has the ability to choose which langauge is displayed on the board and which langauge the buttons are in. For example, the button "French-English" would
+create a board with french words and buttons with english words. Contrarily, "English-French" button would generate a board with English words and would have buttons in French.
 
 
-## Iteration 2: Implemented user stories
+## ------------------------------------------------------------------------------------------------
+
+
+## Implemented user stories from Iteration 2
 
 1. As a sudoku game player I want an easy to understand color coordinated board that makes it easier to view the inner subdivided boxes of the grid.
 
@@ -114,7 +121,6 @@ TDD: On the main menu, the user can select if they would like to play the sudoku
 </p>
 <br>
 
-## User stories for future iteration
 
 ### Different devices
 
@@ -203,43 +209,3 @@ Below are the features that have carried over from Iteration 1 which we we will 
 <img src="/img/progressive.png" width="50%" />
 <br>
 
-4.  As a novice user, I want a help menu, to learn the rules of the game and to learn about app features
-
-- When a user selects the 'Help' button, a dialog pops up on the screen to explain the rules of the game
-
-<p float="left">
-<img src="/img/help.jpg" width="49%">
-<img src="/img/help2.jpg" width="49%">
-</p>
-
-<br>
-
-5.  As an expert user, I want to see where I rank in comparison to others and thus want a leaderboard so that I can showcase my learning accomplishments.
-
-- While a user is playing the game, there is a timer to keep track of the time. Once the game is completed, the user has the option to enter the score in the leaderboard. The leaderboard is categorized by difficulty, and displays the username and time taken, ranked in terms of time.
-
-<img src="/img/leaderboard.jpg" width="70%" />
-
-<br>
-
-6.  As a language learner, I want an option to change to another language, so that there are more varieties of languages to learn.
-
-- When the user opens the app, they are shown the Home page which includes a dropdown from which the user can select the language they are interested in learning. Once the user clicks on one of the language options, they are able to add word pairs into the Dictionary. Once the desired words they wish to play with are added to the Dictionary, they can select the “Start game” button and a new Sudoku game with those words is created.
-
-<p float="left">
-<img src="/img/language.jpg" width="49%">
-<img src="/img/language2.jpg" width="49%">
-</p>
-
-<br>
-
-7.  As a language teacher, I want to add new words, so that my students can learn specific words and enrich their vocabulary pool.
-
-- On the home page, there is a button that allows the user to add words to a Dictionary. The user will be able to add word pairings by filling in textboxes and clicking the “Add to Dictionary” button to add the pair of words to the Dictionary. Once at least nine words have been added to the dictionary, users have the ability to select which words they would like to generate a Sudoku board with. Lastly, by clicking on the start game button, a Sudoku board with words from the language the user knows appear on the board while words from the language the user is trying to learn are in the form of buttons.
-
-<p float="left">
-<img src="/img/dictionary.jpg" width="49%">
-<img src="/img/dictionary2.jpg" width="49%">
-</p>
-
-<img src="/img/dictionary3.jpg" width="49%">
