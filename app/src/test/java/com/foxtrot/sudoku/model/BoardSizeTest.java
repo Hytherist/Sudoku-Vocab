@@ -19,7 +19,7 @@ public class BoardSizeTest {
         assertEquals(2, BoardSize._4X4.getGridRowSize());
         assertEquals(2, BoardSize._6X6.getGridRowSize());
         assertEquals(3, BoardSize._9X9.getGridRowSize());
-        assertEquals(4, BoardSize._12X12.getGridRowSize());
+        assertEquals(3, BoardSize._12X12.getGridRowSize());
     }
 
     @Test
