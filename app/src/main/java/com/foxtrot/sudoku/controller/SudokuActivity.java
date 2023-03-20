@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -289,7 +290,6 @@ public class SudokuActivity extends AppCompatActivity {
 
     private void addEraseButton() {
         Button button = findViewById(R.id.erase_button);
-        button.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
 
         button.setOnClickListener(view -> {
             eraseButtonClicked = true;

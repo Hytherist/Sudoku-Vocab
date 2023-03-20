@@ -11,25 +11,18 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:text="@string/stopwatch_time_initial"
-        android:textSize="24sp" />
+        android:textSize="16sp" />
 
-    <ScrollView
-        android:id="@+id/scroll_view"
+    <GridLayout
+        android:id="@+id/sudoku_table"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/stopwatch_text_view" >
-
-        <GridLayout
-            android:id="@+id/sudoku_table"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </ScrollView>
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/stopwatch_text_view"
-        android:layout_toEndOf="@id/scroll_view"
+        android:layout_toEndOf="@id/sudoku_table"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -41,27 +34,32 @@
 
             <Button
                 android:id="@+id/hint_button"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:text="@string/hint" />
+                android:text="@string/hint"
+                android:textSize="11sp"/>
 
             <Button
                 android:id="@+id/erase_button"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:text="@string/erase" />
+                android:backgroundTint="@android:color/holo_red_light"
+                android:text="@string/erase"
+                android:textSize="11sp" />
 
             <Button
                 android:id="@+id/submit_button"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/submit" />
+                android:text="@string/submit"
+                android:textSize="11sp" />
 
         </LinearLayout>
 
@@ -75,8 +73,9 @@
                 android:id="@+id/back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/home" />
+                android:layout_marginStart="5dp"
+                android:text="@string/home"
+                android:textSize="11sp" />
 
             <Button
                 android:id="@+id/restart_button"
@@ -84,7 +83,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/restart" />
+                android:text="@string/restart"
+                android:textSize="11sp" />
 
         </LinearLayout>
     </LinearLayout>
