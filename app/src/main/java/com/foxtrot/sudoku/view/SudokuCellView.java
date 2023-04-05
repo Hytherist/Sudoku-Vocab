@@ -1,37 +1,69 @@
 package com.foxtrot.sudoku.view;
 
 import android.content.Context;
-import android.util.AttributeSet;
+
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.util.TypedValue;
+import android.view.Gravity;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.core.widget.TextViewCompat;
+import com.foxtrot.sudoku.R;
+import com.foxtrot.sudoku.model.BoardSize;
+import com.foxtrot.sudoku.model.Pair;
 
 public class SudokuCellView extends AppCompatTextView {
 
-    private final int boardSize;
+    private final BoardSize boardSize;
 
-    public SudokuCellView(@NonNull Context context, int boardSize) {
+    private final int row;
+
+    private final int col;
+
+    private final boolean clickable;
+
+    private final Pair<String, String> wordPair;
+
+    public SudokuCellView(@NonNull Context context, BoardSize boardSize, int row, int col, boolean clickable, Pair<String, String> wordPair) {
         super(context);
         this.boardSize = boardSize;
+        this.row = row;
+        this.col = col;
+        this.clickable = clickable;
+        this.wordPair = wordPair;
+
+        initializeCell();
     }
 
-    public SudokuCellView(@NonNull Context context, @Nullable AttributeSet attrs, int boardSize) {
-        super(context, attrs);
-        this.boardSize = boardSize;
-    }
+    private void initializeCell() {
+        setTextSize(TypedValue.COMPLEX_UNIT_SP, boardSize.getTextSize());
+        if (clickable) {
+            Typeface normalTypeface = Typeface.defaultFromStyle(Typeface.NORMAL);
+            setTypeface(normalTypeface);
+            setTextColor(Color.BLUE);
 
-    public SudokuCellView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int boardSize) {
-        super(context, attrs, defStyleAttr);
-        this.boardSize = boardSize;
-    }
+        } else {
+            Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
+            setTypeface(boldTypeface);
+            setTextColor(Color.BLACK);
 
-    private void initializeCell() {}
+        }
+        setText(wordPair == null ? "" : wordPair.getSecond());
+
+        int toggle = (row / boardSize.getGridRowSize() + col / boardSize.getGridColSize()) % 2;
+        setBackground(ResourcesCompat.getDrawable(getResources(), toggle == 0 ? R.drawable.cell_beige : R.drawable.cell_white, null));
+        setGravity(Gravity.CENTER);
+        setMaxLines(1);
+    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
-        int size = Math.min(width, height) / boardSize;
+        int size = Math.min(width, height) / boardSize.getSize();
         setMeasuredDimension(size, size);
     }
 }

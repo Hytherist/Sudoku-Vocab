@@ -8,7 +8,7 @@
     <string name="twelve_by_twelve">12x12</string>
     <string name="four_by_four">4x4</string>
     <string name="six_by_six">6x6</string>
-    <string name="sudoku_title_home">SUDOKU GAME</string>
+    <string name="sudoku_title_home">SUDOKU</string>
     <string name="easy_level">EASY LEVEL</string>
     <string name="Medium_level">MEDIUM LEVEL</string>
     <string name="Hard_level">HARD LEVEL</string>

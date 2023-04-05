@@ -88,4 +88,29 @@ public class GameTest {
         board.load(SUDOKU_SOLUTION_4X4);
         assertTrue(game.validate());
     }
+
+    @Test
+    public void getHintPosition() {
+        game.start(boardSize);
+        Integer expected = 0;
+        assertEquals(expected, game.getHintPosition());
+
+        Board board = game.getBoard();
+        board.load(SUDOKU_SOLUTION_4X4);
+        assertNull(game.getHintPosition());
+    }
+
+    @Test
+    public void reset() {
+        game.start(boardSize);
+        Board board = game.getBoard();
+        board.load(SUDOKU_QUESTION_4X4);
+        game.reset();
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                assertEquals(SUDOKU_QUESTION_4X4[i][j], board.getValue(i, j));
+            }
+        }
+    }
 }

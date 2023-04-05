@@ -204,7 +204,7 @@ Below are the features that have carried over from Iteration 1 which we we will 
 
 3.  As a language learner, I want to progressively learn new word sets, so that I can feel a sense of accomplishment as I learn the language.
 
-- When a user selects to play the progressive levels gamemode, they will be given levels that they must complete before moving onto the next. Each level will not necessarily get progressively harder, rather each level is a defined category of words the user will be focusing on and to beat the level the user must complete the sudoku within a time limit. Users who try to advance to the next level without completing the previous will be prompted with an error that tells them the level they must complete to unlock this.
+- When a user selects to play the progressive levels game mode, they will be given levels that they must complete before moving onto the next. Each level will not necessarily get progressively harder, rather each level is a defined category of words the user will be focusing on and to beat the level the user must complete the sudoku within a time limit. Users who try to advance to the next level without completing the previous will be prompted with an error that tells them the level they must complete to unlock this.
 
 <img src="/img/progressive.png" width="50%" />
 <br>
