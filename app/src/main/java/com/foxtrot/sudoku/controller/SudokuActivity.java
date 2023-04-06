@@ -32,6 +32,7 @@ import com.foxtrot.sudoku.view.SudokuCellView;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 public class SudokuActivity extends AppCompatActivity {
 
@@ -199,7 +200,7 @@ public class SudokuActivity extends AppCompatActivity {
                 builder.setMessage("Incorrect!");
             }
 
-            builder.setPositiveButton("Close", (dialog, id) -> dialog.dismiss());
+            builder.setNeutralButton("Close", (dialog, id) -> dialog.dismiss());
 
             AlertDialog dialog = builder.create();
             dialog.show();
@@ -212,48 +213,20 @@ public class SudokuActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Hint");
 
-            Map<Integer, Pair<String, String>> wordMap = game.getWordMap();
-
-            Integer hintPosition = game.getHintPosition();
-
-            if (hintPosition != null) { // checks if board solved
-                int insideGrid = (int) Math.sqrt(boardSize.getSize()); // gets the 2x2, 3x3, 4x4
-                int insideRow = hintPosition / insideGrid; // row
-                int insideCol = hintPosition % insideGrid; // col
-                int cellRow = -1;
-                int cellCol = -1;
-                String hint = "";
-
-                for (int i = insideRow * insideGrid; i < insideRow * insideGrid + insideGrid; i++) {
-                    for (int j = insideCol * insideGrid; j < insideCol * insideGrid + insideGrid; j++) {
-                        if (game.getBoard().getValue(i, j) != game.getSolution().getValue(i, j)) { // check if currentBoard has a cell that's incorrect / not filled
-                            hint = wordMap.get(game.getSolution().getValue(i, j)).getSecond(); // sets the string as the hint
-                            cellRow = i;
-                            cellCol = j;
-                            break;
-                        }
-                    }
-                }
-
+            // Check if a cell is clicked
+            Optional<Pair<Integer, Integer>> hintPositionOptional = game.getHintPosition();
+            if (hintPositionOptional.isPresent()) {
                 hintCounter++;
-                String message =
-                    "The hint is: <b>" +
-                    hint +
-                    "</b> at position (" +
-                    cellCol +
-                    ", " +
-                    cellRow +
-                    ")<br>" +
-                    "You have used \"<b>" +
-                    hintCounter +
-                    "\"</b> hint(s).";
-
-                builder.setMessage(Html.fromHtml(message));
+                int row = hintPositionOptional.get().getFirst();
+                int col = hintPositionOptional.get().getSecond();
+                String hint = Objects.requireNonNull(game.getWordMap().get(game.getSolution().getValue(row, col))).getFirst();
+                String message = String.format(Locale.CANADA, "The hint is: <b>%s</b> at position (%d, %d)\nHint used: %d", hint, row, col, hintCounter);
+                builder.setMessage(Html.fromHtml(message, Html.FROM_HTML_MODE_LEGACY));
             } else {
-                builder.setMessage("Your Solution is correct!");
+                builder.setMessage("Your solution is already correct!");
             }
 
-            builder.setPositiveButton("Close", (dialog, id) -> dialog.dismiss());
+            builder.setNeutralButton("Close", (dialog, id) -> dialog.dismiss());
 
             AlertDialog dialog = builder.create();
             dialog.show();
