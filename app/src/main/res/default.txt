@@ -1,0 +1,12 @@
+Hello-Bonjour
+Boy-Garçon
+Yes-Oui
+No-Non
+Cat-Chat
+Dog-Chien
+Strong-Fort
+World-Monde
+Day-Jour
+Tall-Grand
+Small-Petit
+Quiet-Calme

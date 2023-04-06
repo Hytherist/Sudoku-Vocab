@@ -22,10 +22,11 @@ public class GameTest {
     );
     Game game = new Game();
     BoardSize boardSize = BoardSize._4X4;
+    boolean useCustom = true;
 
     @Test
     public void start() {
-        game.start(boardSize);
+        game.start(boardSize, useCustom);
         Board board = game.getBoard();
         Board solution = game.getSolution();
 
@@ -46,7 +47,7 @@ public class GameTest {
 
     @Test
     public void getBoard() {
-        game.start(boardSize);
+        game.start(boardSize, useCustom);
         Board board = game.getBoard();
 
         for (int i = 0; i < 4; i++) {
@@ -58,7 +59,7 @@ public class GameTest {
 
     @Test
     public void getSolution() {
-        game.start(boardSize);
+        game.start(boardSize, useCustom);
         Board solution = game.getSolution();
 
         for (int i = 0; i < 4; i++) {
@@ -79,7 +80,7 @@ public class GameTest {
 
     @Test
     public void validate() {
-        game.start(boardSize);
+        game.start(boardSize, useCustom);
         Board board = game.getBoard();
         Board solution = game.getSolution();
 
@@ -91,7 +92,7 @@ public class GameTest {
 
     @Test
     public void getHintPosition() {
-        game.start(boardSize);
+        game.start(boardSize, useCustom);
         Integer expected = 0;
         assertEquals(expected, game.getHintPosition());
 
@@ -102,7 +103,7 @@ public class GameTest {
 
     @Test
     public void reset() {
-        game.start(boardSize);
+        game.start(boardSize, useCustom);
         Board board = game.getBoard();
         board.load(SUDOKU_QUESTION_4X4);
         game.reset();

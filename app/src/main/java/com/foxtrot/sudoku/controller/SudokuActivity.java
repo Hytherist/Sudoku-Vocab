@@ -10,9 +10,6 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.text.Html;
 
-import android.util.TypedValue;
-import android.view.Gravity;
-
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -75,6 +72,8 @@ public class SudokuActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String boardSizeName = intent.getStringExtra(MainMenuActivity.BOARD_SIZE_TAG);
         boardSize = BoardSize.valueOf(boardSizeName);
+
+
 
         // Create the model
         game = new Game();
@@ -205,7 +204,7 @@ public class SudokuActivity extends AppCompatActivity {
         });
     }
 
-    private void addHintButton() { // hint button
+    private void addHintButton() {
         Button button = findViewById(R.id.hint_button);
         button.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -216,7 +215,7 @@ public class SudokuActivity extends AppCompatActivity {
             Integer hintPosition = game.getHintPosition();
 
             if (hintPosition != null) { // checks if board solved
-                int insideGrid = (int) Math.sqrt(boardSize.getSize()); // gets the 2x2, 3x3, 4x4
+                int insideGrid = (int) Math.sqrt(boardSize.getSize());
                 int insideRow = hintPosition / insideGrid; // row
                 int insideCol = hintPosition % insideGrid; // col
                 int cellRow = -1;
@@ -236,16 +235,16 @@ public class SudokuActivity extends AppCompatActivity {
 
                 hintCounter++;
                 String message =
-                    "The hint is: <b>" +
-                    hint +
-                    "</b> at position (" +
-                    cellCol +
-                    ", " +
-                    cellRow +
-                    ")<br>" +
-                    "You have used \"<b>" +
-                    hintCounter +
-                    "\"</b> hint(s).";
+                        "The hint is: <b>" +
+                                hint +
+                                "</b> at position (" +
+                                cellCol +
+                                ", " +
+                                cellRow +
+                                ")<br>" +
+                                "You have used \"<b>" +
+                                hintCounter +
+                                "\"</b> hint(s).";
 
                 builder.setMessage(Html.fromHtml(message));
             } else {

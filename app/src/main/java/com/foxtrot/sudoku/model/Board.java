@@ -9,6 +9,11 @@ public class Board {
     private int[][] values;
 
     public Board(BoardSize boardSize) {
+
+        if (boardSize == null) {
+            throw new IllegalArgumentException("Board size cannot be null.");
+        }
+
         this.size = boardSize.getSize();
         values = new int[size][size];
     }

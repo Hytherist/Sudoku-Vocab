@@ -20,11 +20,49 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/Easy_text"
+        android:id="@+id/Custom_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="100dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:text="@string/Custom"
+        android:layout_centerHorizontal="true"
+        android:textColor="#AE98D5"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Custom_text"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Custom"/>
+
+        <CheckBox
+            android:id="@+id/custom_words_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:onClick="onCheckboxClicked"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/Easy_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="@string/easy_level"
@@ -64,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="300dp"
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="@string/medium_level"
@@ -94,7 +132,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="400dp"
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="@string/hard_level"

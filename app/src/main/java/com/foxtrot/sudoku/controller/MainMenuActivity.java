@@ -2,20 +2,47 @@ package com.foxtrot.sudoku.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.foxtrot.sudoku.R;
+import com.foxtrot.sudoku.model.AppConstants;
 import com.foxtrot.sudoku.model.BoardSize;
 
 public class MainMenuActivity extends AppCompatActivity {
 
     public static final String BOARD_SIZE_TAG = "board_size";
 
+    private CheckBox checkBox;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         displayMainMenuButtons();
+        checkBox = findViewById(R.id.custom_words_checkbox);
+        checkBox.setChecked(AppConstants.useCustomWords);
+
+        // Call the setUseCustomWords method whenever the checkbox state changes
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                AppConstants.setUseCustomWords(isChecked);
+            }
+        });
+    }
+
+    public void onCheckboxClicked(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.custom_words_checkbox:
+                AppConstants.setUseCustomWords(checked);
+                break;
+        }
     }
 
     private void displayMainMenuButtons() {
@@ -46,5 +73,12 @@ public class MainMenuActivity extends AppCompatActivity {
             intent.putExtra(BOARD_SIZE_TAG, BoardSize._12X12.name());
             startActivity(intent);
         });
+
+        Button customButton = (Button) findViewById(R.id.button_custom);
+        customButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainMenuActivity.this, CustomWordsActivity.class);
+            startActivity(intent);
+        });
     }
+
 }

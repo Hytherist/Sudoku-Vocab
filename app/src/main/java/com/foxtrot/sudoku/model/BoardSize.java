@@ -9,7 +9,6 @@ public enum BoardSize {
     private final int size;
     private final int gridRowSize;
     private final int gridColSize;
-
     private final int textSize;
 
     BoardSize(int size, int gridRowSize, int gridColSize, int textSize) {
@@ -31,5 +30,7 @@ public enum BoardSize {
         return gridColSize;
     }
 
-    public int getTextSize() { return textSize;}
+    public int getTextSize() {
+        return textSize;
+    }
 }

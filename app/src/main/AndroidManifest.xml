@@ -25,6 +25,11 @@
             android:configChanges="orientation|screenSize"
             android:exported="true">
         </activity>
+
+        <activity
+            android:name=".controller.CustomWordsActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

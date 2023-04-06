@@ -85,7 +85,7 @@ public class Game {
         { 11, 10, 8, 3, 5, 12, 9, 4, 7, 1, 2, 6 },
     };
 
-    private static final List<Pair<String, String>> WORD_PAIR_LIST = List.of(
+    public static final List<Pair<String, String>> WORD_PAIR_LIST = List.of(
         new Pair<>("Hello", "Bonjour"),
         new Pair<>("Boy", "Garçon"),
         new Pair<>("Yes", "Oui"),
@@ -197,18 +197,40 @@ public class Game {
     }
 
     public Integer getHintPosition() {
-        int boxSize = (int) Math.sqrt(board.getSize());
+
+        int boxSize, innerGridSize;
+        if (board.getSize() == 4) {
+            boxSize = 2;
+            innerGridSize = 2;
+        } else if (board.getSize() == 9) {
+            boxSize = 3;
+            innerGridSize = 3;
+        } else if (board.getSize() == 12) {
+            boxSize = 4;
+            innerGridSize = 3;
+        } else { // boardSize == BoardSize.SIX_BY_SIX
+            boxSize = 3;
+            innerGridSize = 2;
+        }
+
         for (int i = 0; i < board.getSize(); i++) {
             for (int j = 0; j < board.getSize(); j++) {
                 if (board.getValue(i, j) != solution.getValue(i, j)) {
-                    int boxRow = i / boxSize;
-                    int boxCol = j / boxSize;
-                    return boxRow * boxSize + boxCol;
+                    int innerRow = i / innerGridSize;
+                    int innerCol = j / innerGridSize;
+                    for (int k = innerRow * innerGridSize; k < innerRow * innerGridSize + innerGridSize; k++) {
+                        for (int l = innerCol * innerGridSize; l < innerCol * innerGridSize + boxSize; l++) {
+                            if (board.getValue(k, l) != solution.getValue(k, l)) {
+                                return k * board.getSize() + l;
+                            }
+                        }
+                    }
                 }
             }
         }
         return null;
     }
+
 
     public void reset() {
         board = new Board(boardSize);
