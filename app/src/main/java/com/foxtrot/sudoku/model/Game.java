@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 /** Top-level driver class that contains the state of the application. */
@@ -196,18 +197,24 @@ public class Game {
         return true;
     }
 
-    public Integer getHintPosition() {
-        int boxSize = (int) Math.sqrt(board.getSize());
-        for (int i = 0; i < board.getSize(); i++) {
-            for (int j = 0; j < board.getSize(); j++) {
+    public Optional<Pair<Integer, Integer>> getHintPosition() {
+        List<Pair<Integer, Integer>> validHintPositions = new ArrayList<>();
+        int size = board.getSize();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 if (board.getValue(i, j) != solution.getValue(i, j)) {
-                    int boxRow = i / boxSize;
-                    int boxCol = j / boxSize;
-                    return boxRow * boxSize + boxCol;
+                    Pair<Integer, Integer> hintPosition = new Pair<>(i, j);
+                    validHintPositions.add(hintPosition);
                 }
             }
         }
-        return null;
+
+        if (validHintPositions.isEmpty()) {
+            return Optional.empty();
+        }
+
+        int randomIndex = RANDOM.nextInt(validHintPositions.size());
+        return Optional.of(validHintPositions.get(randomIndex));
     }
 
     public void reset() {
