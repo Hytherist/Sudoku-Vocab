@@ -8,16 +8,15 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.speech.tts.TextToSpeech;
 import android.text.Html;
 
-import android.util.TypedValue;
-import android.view.Gravity;
+import android.util.Log;
 
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -27,6 +26,7 @@ import androidx.core.content.res.ResourcesCompat;
 import com.foxtrot.sudoku.R;
 import com.foxtrot.sudoku.model.BoardSize;
 import com.foxtrot.sudoku.model.Game;
+import com.foxtrot.sudoku.model.GameMode;
 import com.foxtrot.sudoku.model.Pair;
 import com.foxtrot.sudoku.view.SudokuCellView;
 import java.util.Locale;
@@ -34,11 +34,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public class SudokuActivity extends AppCompatActivity {
+public class SudokuActivity extends AppCompatActivity implements TextToSpeech.OnInitListener  {
 
     private Game game;
 
     private BoardSize boardSize;
+
+    private GameMode gameMode;
 
     private int hintCounter = 0;
 
@@ -70,6 +72,8 @@ public class SudokuActivity extends AppCompatActivity {
         }
     };
 
+    private TextToSpeech textToSpeech;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +81,9 @@ public class SudokuActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String boardSizeName = intent.getStringExtra(MainMenuActivity.BOARD_SIZE_TAG);
         boardSize = BoardSize.valueOf(boardSizeName);
+
+        String gameModeString = intent.getStringExtra(MainMenuActivity.GAME_MODE);
+        gameMode = GameMode.valueOf(gameModeString);
 
         // Create the model
         game = new Game();
@@ -93,6 +100,8 @@ public class SudokuActivity extends AppCompatActivity {
 
         stopwatchTextView = findViewById(R.id.stopwatch_text_view);
         startStopwatch();
+
+        textToSpeech = new TextToSpeech(this, this);
     }
 
     @Override
@@ -113,10 +122,27 @@ public class SudokuActivity extends AppCompatActivity {
         addEraseButton();
 
         stopwatchTextView = findViewById(R.id.stopwatch_text_view);
+
+        textToSpeech = new TextToSpeech(this, this);
+    }
+
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            // Set the language
+            int result = textToSpeech.setLanguage(Locale.CANADA_FRENCH);
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                // Language not supported
+                Log.e("TextToSpeech", "Language not supported");
+            }
+        } else {
+            // Initialization failed
+            Log.e("TextToSpeech", "Initialization failed");
+        }
     }
 
     private void addBackButton() {
-        Button backButton = (Button) findViewById(R.id.back_button);
+        Button backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(view -> {
             reset();
             startActivity(new Intent(SudokuActivity.this, MainMenuActivity.class));
@@ -133,7 +159,12 @@ public class SudokuActivity extends AppCompatActivity {
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                SudokuCellView cell = initializeCell(i, j);
+                SudokuCellView cell;
+                if (gameMode == GameMode.LISTENING_COMPREHENSION) {
+                    cell = initializeCellForListeningComprehension(i, j);
+                } else {
+                    cell = initializeCell(i, j);
+                }
                 sudokuBoard.addView(cell);
             }
         }
@@ -143,10 +174,40 @@ public class SudokuActivity extends AppCompatActivity {
         int value = game.getBoard().getValue(row, col);
         Pair<String, String> wordPair = game.getWordMap().get(value);
         boolean clickable = game.getQuestion().getValue(row, col) == 0;
-        SudokuCellView cell = new SudokuCellView(this, boardSize, row, col, clickable, wordPair);
+        SudokuCellView cell = new SudokuCellView(this, boardSize, row, col, clickable, wordPair, gameMode, value);
         if (clickable) {
             cell.setOnClickListener(view -> onCellClick(view, row, col));
         }
+        return cell;
+    }
+
+    private SudokuCellView initializeCellForListeningComprehension(int row, int col) {
+        int value = game.getSolution().getValue(row, col);
+        Pair<String, String> wordPair = game.getWordMap().get(value);
+        SudokuCellView cell = new SudokuCellView(this, boardSize, row, col, true, wordPair, gameMode, value);
+        cell.setOnClickListener(view -> {
+            // Speak text
+            String text = wordPair.getSecond();
+            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+
+            Map<Integer, Pair<String, String>> wordMap = game.getWordMap();
+            PopupMenu popupMenu = new PopupMenu(this, view);
+
+            for (Map.Entry<Integer, Pair<String, String>> mapping : wordMap.entrySet()) {
+                popupMenu.getMenu().add(1, mapping.getKey(), Menu.NONE, mapping.getValue().first);
+            }
+
+            popupMenu.setOnMenuItemClickListener(menuItem -> {
+                if (menuItem.getItemId() == value) {
+                    view.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light, null));
+                } else {
+                    view.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light, null));
+                }
+                return true;
+            });
+
+            popupMenu.show();
+        });
         return cell;
     }
 
