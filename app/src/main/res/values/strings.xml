@@ -17,4 +17,7 @@
     <string name="medium_level">MEDIUM LEVEL</string>
     <string name="hard_level">HARD LEVEL</string>
     <string name="stopwatch_time_initial">00:00</string>
+    <string name="french_english">Fr to En</string>
+    <string name="english_french">En to Fr</string>
+    <string name="choose_lang">Choose Language</string>
 </resources>

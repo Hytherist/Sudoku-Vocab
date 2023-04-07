@@ -1,14 +1,63 @@
 package com.foxtrot.sudoku.model;
 
+import static android.content.Intent.getIntent;
+import static android.content.Intent.getIntentOld;
+import android.os.Bundle;
+import android.content.Intent;
+import android.app.DirectAction;
+import android.os.Bundle;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import static android.content.Intent.getIntent;
 
+import static androidx.core.app.NotificationCompat.getExtras;
+
+
+
+import android.content.Intent;
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
+import android.text.Html;
+
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
+
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
+import com.foxtrot.sudoku.R;
+import com.foxtrot.sudoku.model.BoardSize;
+import com.foxtrot.sudoku.model.Game;
+import com.foxtrot.sudoku.model.Pair;
+import com.foxtrot.sudoku.view.SudokuCellView;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 /** Top-level driver class that contains the state of the application. */
 public class Game {
 
+    public String buttonClickDataLang;
+
+    public String Board_language_option;
     private static final int[][] SUDOKU_QUESTION_4X4 = { { 0, 1, 4, 0 }, { 0, 0, 0, 3 }, { 0, 3, 0, 0 }, { 2, 4, 0, 1 } };
 
     private static final int[][] SUDOKU_SOLUTION_4X4 = { { 3, 1, 4, 2 }, { 4, 2, 1, 3 }, { 1, 3, 2, 4 }, { 2, 4, 3, 1 } };
@@ -99,6 +148,20 @@ public class Game {
         new Pair<>("Small", "Petit"),
         new Pair<>("Quiet", "Calme")
     );
+    private static final List<Pair<String, String>> WORD_PAIR_LIST2 = List.of(
+            new Pair<>("Bonjour", "Hello"),
+            new Pair<>("Garçon", "Boy"),
+            new Pair<>("Oui", "Yes"),
+            new Pair<>("Non", "No"),
+            new Pair<>("Chat", "Cat"),
+            new Pair<>("Chien", "Dog"),
+            new Pair<>("Fort", "Strong"),
+            new Pair<>("Monde", "World"),
+            new Pair<>("Jour", "Day"),
+            new Pair<>("Grand", "Tall"),
+            new Pair<>("Petit", "Small"),
+            new Pair<>("Calme", "Quiet")
+    );
 
     private static final Random RANDOM = new Random();
 
@@ -110,12 +173,20 @@ public class Game {
 
     private Board solution;
 
+    public Intent intent;
     private Map<Integer, Pair<String, String>> wordMap;
+
+    private Map<Integer, Pair<String, String>> wordMap2;
 
     public Game() {}
 
+
+
+
     public void start(BoardSize boardSize) {
         this.boardSize = boardSize;
+
+
 
         board = new Board(boardSize);
         board.load(getSudokuQuestion(boardSize));
@@ -126,8 +197,25 @@ public class Game {
         solution = new Board(boardSize);
         solution.load(getSudokuSolution(boardSize));
 
+
+        //Bundle extras = getApplication().getIntent().getExtras();
+//        if (extras != null) {
+//            String value = extras.getString("key");
+//            // do something with the value
+//        }
+        setData(frendata);
         loadWordMap();
     }
+
+    private String frendata;
+    public void setData(String frendata) {
+        this.frendata = frendata;
+        //Log.d("myTag111", frendata);
+    }
+
+
+
+
 
     private int[][] getSudokuQuestion(BoardSize boardSize) {
         switch (boardSize) {
@@ -157,10 +245,23 @@ public class Game {
         return null;
     }
 
-    private void loadWordMap() {
-        wordMap = new HashMap<>();
 
-        List<Pair<String, String>> wordPairList = new ArrayList<>(WORD_PAIR_LIST);
+
+    private void loadWordMap() {
+
+        wordMap = new HashMap<>();
+        List<Pair<String, String>> wordPairList;
+
+        if(frendata == "enTofr"){
+
+            wordPairList = new ArrayList<>(WORD_PAIR_LIST2);
+        }
+        else{
+
+            wordPairList = new ArrayList<>(WORD_PAIR_LIST);
+        }
+//        String boardLanguageOption = intent.getStringExtra("Board_language_option");
+//        wordPairList = new ArrayList<>(WORD_PAIR_LIST2);
         int size = board.getSize();
         for (int i = 1; i <= size; i++) {
             Pair<String, String> wordPair = wordPairList.remove(RANDOM.nextInt(wordPairList.size()));
@@ -183,6 +284,9 @@ public class Game {
     public Map<Integer, Pair<String, String>> getWordMap() {
         return wordMap;
     }
+//    public Map<Integer, Pair<String, String>> getWordMap2() {
+//        return wordMap2;
+//    }
 
     public boolean validate() {
         int size = board.getSize();
@@ -215,4 +319,5 @@ public class Game {
         board.load(getSudokuQuestion(boardSize));
         loadWordMap();
     }
+
 }

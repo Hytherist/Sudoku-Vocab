@@ -1,5 +1,7 @@
 package com.foxtrot.sudoku.controller;
 
+import static android.content.Intent.getIntent;
+
 import android.content.Intent;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -48,6 +50,8 @@ public class SudokuActivity extends AppCompatActivity {
 
     private long stopwatchEndTime;
 
+    public String Board_language_option;
+
     private Handler stopwatchHandler = new Handler();
 
     private TextView stopwatchTextView;
@@ -87,9 +91,15 @@ public class SudokuActivity extends AppCompatActivity {
         if (intent != null && intent.hasExtra("new_boardSize_value6")) {
             boardSize = BoardSize._6X6;
         }
+        if (intent != null && intent.hasExtra("new_boardSize_value6")) {
+            boardSize = BoardSize._6X6;
+        }
+
 
         String boardSizeName = intent.getStringExtra(MainMenuActivity.BOARD_SIZE_TAG);
         boardSize = BoardSize.valueOf(boardSizeName);
+
+
 
         // Create the model
         game = new Game();

@@ -1,22 +1,69 @@
 package com.foxtrot.sudoku.controller;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.foxtrot.sudoku.R;
 import com.foxtrot.sudoku.model.BoardSize;
+import com.foxtrot.sudoku.model.Game;
 
 public class MainMenuActivity extends AppCompatActivity {
 
     public static final String BOARD_SIZE_TAG = "board_size";
+    public static final String Board_language_option = "frenchToenglish";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        FRlangBtnClick();
+
+        ENlangBtnClick();
+
         displayMainMenuButtons();
+
     }
+    public void FRlangBtnClick() {
+        Button frlangBtn = (Button)findViewById(R.id.fr_en);
+        frlangBtn.setOnClickListener(view -> {
+//            Intent intent = new Intent(MainMenuActivity.this, Game.class);
+////            intent.putExtra("Board_language_option", "frenchToenglish");
+////            startActivity(intent);
+//
+//            Bundle extras = new Bundle();
+//            extras.putString("key", "value1");
+//            intent.putExtras(extras);
+//            startActivity(intent);
+            String frdata = "frToen";
+            Game nonActivityJavaClass = new Game();
+            nonActivityJavaClass.setData(frdata);
+        });
+
+
+
+    }
+    public void ENlangBtnClick() {
+        Button enlangBtn = (Button)findViewById(R.id.en_fr);
+        enlangBtn.setOnClickListener(view -> {
+//            Intent intent = new Intent(MainMenuActivity.this, Game.class);
+////            intent.putExtra("Board_language_option", "englishTofrench");
+////            startActivity(intent);
+//            Bundle extras = new Bundle();
+//            extras.putString("key", "value1");
+//            intent.putExtras(extras);
+//            startActivity(intent);
+            String endata = "enTofr";
+            Game nonActivityJavaClass = new Game();
+            nonActivityJavaClass.setData(endata);
+        });
+
+    }
+
 
     private void displayMainMenuButtons() {
         Button next4x4Button = (Button) findViewById(R.id.button_four);

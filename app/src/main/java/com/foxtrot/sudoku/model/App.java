@@ -113,6 +113,33 @@ public class App {
         new Pair<>("Avion", "Plane"))
     );
 
+    private Map<Integer, Pair<String, String>> wordMap2 = Map.ofEntries(
+            Map.entry(1,
+                    new Pair<>("Bonjour", "Hello")),
+            Map.entry(2,
+                    new Pair<>("Au Revoir", "Goodbye ")),
+            Map.entry(3,
+                    new Pair<>("Oui", "Yes")),
+            Map.entry(4,
+                    new Pair<>("Non", "No")),
+            Map.entry(5,
+                    new Pair<>("Chat", "Cat")),
+            Map.entry(6,
+                    new Pair<>("Chien", "Dog")),
+            Map.entry(7,
+                    new Pair<>("Fort", "Strong")),
+            Map.entry(8,
+                    new Pair<>("World", "Monde")),
+            Map.entry(9,
+                    new Pair<>("Day", "Jour")),
+            Map.entry(10,
+                    new Pair<>("Water", "Eau")),
+            Map.entry(11,
+                    new Pair<>("Tea", " Thé")),
+            Map.entry(12,
+                    new Pair<>("Plane", "Avion"))
+    );
+
 
     public App() {}
 
@@ -159,6 +186,10 @@ public class App {
 
     public Board getSolution() {
         return solution;
+    }
+
+    public Map<Integer, Pair<String, String>> getWordMap2() {
+        return wordMap2;
     }
 
     public Map<Integer, Pair<String, String>> getWordMap() {
