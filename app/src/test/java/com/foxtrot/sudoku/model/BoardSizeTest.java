@@ -29,4 +29,12 @@ public class BoardSizeTest {
         assertEquals(3, BoardSize._9X9.getGridColSize());
         assertEquals(4, BoardSize._12X12.getGridColSize());
     }
+
+    @Test
+    public void getTextSize() {
+        assertEquals(18, BoardSize._4X4.getTextSize());
+        assertEquals(12, BoardSize._6X6.getTextSize());
+        assertEquals(8, BoardSize._9X9.getTextSize());
+        assertEquals(6, BoardSize._12X12.getTextSize());
+    }
 }
