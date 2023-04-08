@@ -104,12 +104,66 @@ public class UiTest {
     @Test
     public void testHomeBtn() throws UiObjectNotFoundException {
         clickButton("com.foxtrot.sudoku:id/button_four");
-        clickButton("com.foxtrot.sudoku:id/backHome_button");
+        clickButton("com.foxtrot.sudoku:id/back_button");
     }
 
     @Test
     public void testEraseBtn() throws UiObjectNotFoundException {
         clickButton("com.foxtrot.sudoku:id/button_four");
         clickButton("com.foxtrot.sudoku:id/erase_button");
+    }
+
+    @Test
+    public void testListeningComprehensionMode() throws UiObjectNotFoundException {
+        clickButton("com.foxtrot.sudoku:id/game_mode_listening_comprehension");
+        test4x4Btn();
+        clickButton("com.foxtrot.sudoku:id/back_button");
+        clickButton("com.foxtrot.sudoku:id/game_mode_listening_comprehension");
+        test6x6Btn();
+        clickButton("com.foxtrot.sudoku:id/back_button");
+        clickButton("com.foxtrot.sudoku:id/game_mode_listening_comprehension");
+        test9x9Btn();
+        clickButton("com.foxtrot.sudoku:id/back_button");
+        clickButton("com.foxtrot.sudoku:id/game_mode_listening_comprehension");
+        test12x12Btn();
+        clickButton("com.foxtrot.sudoku:id/back_button");
+    }
+
+    @Test
+    public void testNormalEnglishMode() throws UiObjectNotFoundException {
+        clickButton("com.foxtrot.sudoku:id/game_mode_normal");
+        clickButton("com.foxtrot.sudoku:id/board_language_english");
+        test4x4Btn();
+        clickButton("com.foxtrot.sudoku:id/back_button");
+        clickButton("com.foxtrot.sudoku:id/board_language_english");
+        test6x6Btn();
+        clickButton("com.foxtrot.sudoku:id/back_button");
+        clickButton("com.foxtrot.sudoku:id/board_language_english");
+        test9x9Btn();
+        clickButton("com.foxtrot.sudoku:id/back_button");
+        clickButton("com.foxtrot.sudoku:id/board_language_english");
+        test12x12Btn();
+        clickButton("com.foxtrot.sudoku:id/back_button");
+    }
+
+    @Test
+    public void testNormalFrenchMode() throws UiObjectNotFoundException {
+        clickButton("com.foxtrot.sudoku:id/game_mode_normal");
+        clickButton("com.foxtrot.sudoku:id/board_language_english");
+        clickButton("com.foxtrot.sudoku:id/board_language_french");
+        test4x4Btn();
+        clickButton("com.foxtrot.sudoku:id/back_button");
+        clickButton("com.foxtrot.sudoku:id/board_language_english");
+        clickButton("com.foxtrot.sudoku:id/board_language_french");
+        test6x6Btn();
+        clickButton("com.foxtrot.sudoku:id/back_button");
+        clickButton("com.foxtrot.sudoku:id/board_language_english");
+        clickButton("com.foxtrot.sudoku:id/board_language_french");
+        test9x9Btn();
+        clickButton("com.foxtrot.sudoku:id/back_button");
+        clickButton("com.foxtrot.sudoku:id/board_language_english");
+        clickButton("com.foxtrot.sudoku:id/board_language_french");
+        test12x12Btn();
+        clickButton("com.foxtrot.sudoku:id/back_button");
     }
 }
