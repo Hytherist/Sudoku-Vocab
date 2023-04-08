@@ -51,5 +51,4 @@ public class BoardTest {
         assertEquals(9, BoardSize._9X9.getSize());
         assertEquals(12, BoardSize._12X12.getSize());
     }
-
 }

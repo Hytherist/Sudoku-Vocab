@@ -10,9 +10,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.speech.tts.TextToSpeech;
 import android.text.Html;
-
 import android.util.Log;
-
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +22,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import com.foxtrot.sudoku.R;
+import com.foxtrot.sudoku.model.BoardLanguage;
 import com.foxtrot.sudoku.model.BoardSize;
 import com.foxtrot.sudoku.model.Game;
 import com.foxtrot.sudoku.model.GameMode;
@@ -34,13 +33,15 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public class SudokuActivity extends AppCompatActivity implements TextToSpeech.OnInitListener  {
+public class SudokuActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private Game game;
 
     private BoardSize boardSize;
 
     private GameMode gameMode;
+
+    private BoardLanguage boardLanguage;
 
     private int hintCounter = 0;
 
@@ -79,11 +80,14 @@ public class SudokuActivity extends AppCompatActivity implements TextToSpeech.On
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        String boardSizeName = intent.getStringExtra(MainMenuActivity.BOARD_SIZE_TAG);
-        boardSize = BoardSize.valueOf(boardSizeName);
+        String boardSizeString = intent.getStringExtra(MainMenuActivity.BOARD_SIZE_TAG);
+        boardSize = BoardSize.valueOf(boardSizeString);
 
         String gameModeString = intent.getStringExtra(MainMenuActivity.GAME_MODE);
         gameMode = GameMode.valueOf(gameModeString);
+
+        String boardLanguageString = intent.getStringExtra(MainMenuActivity.BOARD_LANGUAGE);
+        boardLanguage = BoardLanguage.valueOf(boardLanguageString);
 
         // Create the model
         game = new Game();
@@ -174,7 +178,7 @@ public class SudokuActivity extends AppCompatActivity implements TextToSpeech.On
         int value = game.getBoard().getValue(row, col);
         Pair<String, String> wordPair = game.getWordMap().get(value);
         boolean clickable = game.getQuestion().getValue(row, col) == 0;
-        SudokuCellView cell = new SudokuCellView(this, boardSize, row, col, clickable, wordPair, gameMode, value);
+        SudokuCellView cell = new SudokuCellView(this, boardSize, row, col, clickable, wordPair, gameMode, value, boardLanguage);
         if (clickable) {
             cell.setOnClickListener(view -> onCellClick(view, row, col));
         }
@@ -184,7 +188,7 @@ public class SudokuActivity extends AppCompatActivity implements TextToSpeech.On
     private SudokuCellView initializeCellForListeningComprehension(int row, int col) {
         int value = game.getSolution().getValue(row, col);
         Pair<String, String> wordPair = game.getWordMap().get(value);
-        SudokuCellView cell = new SudokuCellView(this, boardSize, row, col, true, wordPair, gameMode, value);
+        SudokuCellView cell = new SudokuCellView(this, boardSize, row, col, true, wordPair, gameMode, value, boardLanguage);
         cell.setOnClickListener(view -> {
             // Speak text
             String text = wordPair.getSecond();
@@ -228,11 +232,14 @@ public class SudokuActivity extends AppCompatActivity implements TextToSpeech.On
         view.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.cell_current, null));
 
         for (Map.Entry<Integer, Pair<String, String>> mapping : wordMap.entrySet()) {
-            popupMenu.getMenu().add(1, mapping.getKey(), Menu.NONE, mapping.getValue().first);
+            popupMenu
+                .getMenu()
+                .add(1, mapping.getKey(), Menu.NONE, boardLanguage == BoardLanguage.ENGLISH ? mapping.getValue().second : mapping.getValue().first);
         }
 
         popupMenu.setOnMenuItemClickListener(menuItem -> {
-            ((TextView) view).setText(Objects.requireNonNull(wordMap.get(menuItem.getItemId())).second);
+            Pair<String, String> wordPair = Objects.requireNonNull(wordMap.get(menuItem.getItemId()));
+            ((TextView) view).setText(boardLanguage == BoardLanguage.ENGLISH ? wordPair.first : wordPair.second);
             game.getBoard().setValue(row, col, menuItem.getItemId());
             return true;
         });
@@ -281,7 +288,14 @@ public class SudokuActivity extends AppCompatActivity implements TextToSpeech.On
                 int row = hintPositionOptional.get().getFirst();
                 int col = hintPositionOptional.get().getSecond();
                 String hint = Objects.requireNonNull(game.getWordMap().get(game.getSolution().getValue(row, col))).getFirst();
-                String message = String.format(Locale.CANADA, "The hint is: <b>%s</b> at position (%d, %d)\nHint used: %d", hint, row, col, hintCounter);
+                String message = String.format(
+                    Locale.CANADA,
+                    "The hint is: <b>%s</b> at position (%d, %d)\nHint used: %d",
+                    hint,
+                    row,
+                    col,
+                    hintCounter
+                );
                 builder.setMessage(Html.fromHtml(message, Html.FROM_HTML_MODE_LEGACY));
             } else {
                 builder.setMessage("Your solution is already correct!");

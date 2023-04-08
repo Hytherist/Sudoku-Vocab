@@ -5,7 +5,6 @@ import static org.junit.Assert.assertThat;
 
 import android.content.Context;
 import android.content.Intent;
-
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SdkSuppress;
@@ -16,7 +15,6 @@ import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,8 +22,8 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 @SdkSuppress(minSdkVersion = 18)
 public class UiTest {
-    private static final String BASIC_SAMPLE_PACKAGE
-            = "com.foxtrot.sudoku";
+
+    private static final String BASIC_SAMPLE_PACKAGE = "com.foxtrot.sudoku";
     private static final int LAUNCH_TIMEOUT = 5000;
     private UiDevice device;
 
@@ -40,21 +38,18 @@ public class UiTest {
         // Wait for launcher
         final String launcherPackage = device.getLauncherPackageName();
         assertThat(launcherPackage, notNullValue());
-        device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)),
-                LAUNCH_TIMEOUT);
+        device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
 
         // Launch the app
         Context context = ApplicationProvider.getApplicationContext();
-        final Intent intent = context.getPackageManager()
-                .getLaunchIntentForPackage(BASIC_SAMPLE_PACKAGE);
+        final Intent intent = context.getPackageManager().getLaunchIntentForPackage(BASIC_SAMPLE_PACKAGE);
 
         // Clear out any previous instances
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
 
         // Wait for the app to appear
-        device.wait(Until.hasObject(By.pkg(BASIC_SAMPLE_PACKAGE).depth(0)),
-                LAUNCH_TIMEOUT);
+        device.wait(Until.hasObject(By.pkg(BASIC_SAMPLE_PACKAGE).depth(0)), LAUNCH_TIMEOUT);
     }
 
     public void clickButton(String id) throws UiObjectNotFoundException {

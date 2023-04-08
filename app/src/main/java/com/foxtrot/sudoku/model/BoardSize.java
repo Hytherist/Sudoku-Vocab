@@ -31,5 +31,7 @@ public enum BoardSize {
         return gridColSize;
     }
 
-    public int getTextSize() { return textSize;}
+    public int getTextSize() {
+        return textSize;
+    }
 }
