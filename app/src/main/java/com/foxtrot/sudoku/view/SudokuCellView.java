@@ -1,17 +1,15 @@
 package com.foxtrot.sudoku.view;
 
 import android.content.Context;
-
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.Gravity;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.core.widget.TextViewCompat;
 import com.foxtrot.sudoku.R;
+import com.foxtrot.sudoku.model.BoardLanguage;
 import com.foxtrot.sudoku.model.BoardSize;
 import com.foxtrot.sudoku.model.GameMode;
 import com.foxtrot.sudoku.model.Pair;
@@ -30,7 +28,19 @@ public class SudokuCellView extends AppCompatTextView {
 
     private final int value;
 
-    public SudokuCellView(@NonNull Context context, BoardSize boardSize, int row, int col, boolean clickable, Pair<String, String> wordPair, GameMode gameMode, int value) {
+    private final BoardLanguage boardLanguage;
+
+    public SudokuCellView(
+        @NonNull Context context,
+        BoardSize boardSize,
+        int row,
+        int col,
+        boolean clickable,
+        Pair<String, String> wordPair,
+        GameMode gameMode,
+        int value,
+        BoardLanguage boardLanguage
+    ) {
         super(context);
         this.boardSize = boardSize;
         this.row = row;
@@ -38,6 +48,7 @@ public class SudokuCellView extends AppCompatTextView {
         this.clickable = clickable;
         this.wordPair = wordPair;
         this.value = value;
+        this.boardLanguage = boardLanguage;
 
         if (gameMode == GameMode.NORMAL) {
             initializeCell();
@@ -52,13 +63,12 @@ public class SudokuCellView extends AppCompatTextView {
             Typeface normalTypeface = Typeface.defaultFromStyle(Typeface.NORMAL);
             setTypeface(normalTypeface);
             setTextColor(Color.BLUE);
-
         } else {
             Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
             setTypeface(boldTypeface);
             setTextColor(Color.BLACK);
         }
-        setText(wordPair == null ? "" : wordPair.getSecond());
+        setText(wordPair == null ? "" : boardLanguage == BoardLanguage.ENGLISH ? wordPair.getFirst() : wordPair.getSecond());
 
         int toggle = (row / boardSize.getGridRowSize() + col / boardSize.getGridColSize()) % 2;
         setBackground(ResourcesCompat.getDrawable(getResources(), toggle == 0 ? R.drawable.cell_beige : R.drawable.cell_white, null));

@@ -15,5 +15,9 @@
     <string name="hard_level">HARD LEVEL</string>
     <string name="stopwatch_time_initial">00:00</string>
     <string name="listening_comprehension">Listening Comprehension</string>
-    <string name="other">Other</string>
+    <string name="game_mode">GAME MODE</string>
+    <string name="board_language">BOARD LANGUAGE</string>
+    <string name="french">French</string>
+    <string name="english">English</string>
+    <string name="normal">Normal</string>
 </resources>
