@@ -1,6 +1,45 @@
 # Foxtrot
 
-# Iteration 3: Implemented user stories
+
+# Iteration 4: Implemented user stories
+
+
+
+## Listening Comprehension Mode -  Complete
+
+(Users have the ability to practice their  understanding of spoken words in French by using the comprehension mode. In this mode, numbers will appear in the prefilled cells. When a user presses the number, the corresponding word in French will be read out to them. This game mode feature allows users to test their listening comprehension by selecting from the menu the correct English translation of the word.)
+
+1. User Story: As a language learner,  I want to practice my understanding of spoken words in the language I am learning by hearing the words said out loud.
+
+TDD: On the main menu, the user can select if they would like to play the sudoku game in listening comprehension mode or normal mode. If the listening comprehension mode is selected, then a board of size either 4x4, 6x6,9x9 or 12x12 is generated with prefilled numbers in the cells. By clicking on these numbers, I am able to hear the words corresponding to each number. For example if a block is labelled 1 and its corresponding word is Bonjour, then once I click on the cell with the number 1, I hear the word “Bonjour” read out. Then, I select the English translation of the French word I heard to fill the cell.
+
+
+2. User Story: As a language learner,  I want the ability to verify whether I understand a word I hear right away
+
+TDD: After the user has clicked on a numbered cell and heard the corresponding word in French. They must select what they think the english translation is to that word. If the wrong option is selected, the cell turns red to immediately let the player know that they have picked the wrong translation. In order to proceed in the game, the player must select the correct translation as the cell would turn green. At the end, if the player understood all the words read out to them then the entire grid must be green and the game is complete.
+
+<p float="left">
+<img src="/img/por_lc.png" width="35%" />
+<img src="/img/land_lc.png" width="35%" />
+</p>
+
+<br>
+
+## Instructions Page -  Complete
+
+(Naive users who are new to the game have the ability to learn more about the game through the instruction page as it outline the rules of the game and explains how various game features such as Hint, Erase, Reset and Submit can be used throughout the game)
+
+1. User Story: As a naive user, I want the ability to learn the game before I play
+
+TDD: On the main menu, the user can select if they would like to learn how to play the sudoku game by clicking on the “Instructions” button. Once the button is clicked, the user is taken to a new page. On the instructions page the user can find details about the game and how it teaches players a new language, how to set up a game by choosing game preferences on the home page, the main goal of the game and explains the various game such as Hint, Erase, Reset and Submit buttons in detail.
+
+<p float="left">
+<img src="/img/instructionsFinal.png" width="35%" />
+</p>
+
+<br>
+
+
 
 ## Different Sudoku Grid Sizes: Complete
 
@@ -14,6 +53,14 @@ TDD: As soon as the app is opened the user can pick the level of difficulty they
 
 TDD: On the menu page, the user can select the level of difficulty they would like to play with and there is an option to play on a 12x12 board for an extra challenge. Once the user selects that option, a 12x12 board is generated on the screen with 12 corresponding word pairs.
 
+<p float="left">
+<img src="/img/porFinal_six.png" width="33%" />
+<img src="/img/porFinal_ninexnine.png" width="33%" />
+<img src="/img/landFinal_twelvextwelve.png" width="33%" />
+</p>
+
+<br>
+
 ## Different Devices: Complete
 (Portrait and Landscape orientations of a phone are being supported in our current working game. In addition, the game can be played on a Tablet as the landscape and portrait orientations of a tablet are also being supported)
 1. User Story: As someone who wants to learn new vocabulary, I prefer playing the language learning Sudoku game on a bigger screen to better view the contents such as longer words and enhance my gameplay experience.
@@ -22,8 +69,8 @@ TDD: Sudoku game users have the ability to play the game on devices with larger 
 
 
 <p float="left">
-<img src="/img/portraitTabletHome.png" width="33%" />
-<img src="/img/landscapeTabletHome.png" width="33%" />
+<img src="/img/tablet_landFinal.png" width="33%" />
+<img src="/img/tablet_porFinal.png" width="33%" />
 </p>
 
 <br>
@@ -67,31 +114,8 @@ TDD: There is a timer built in the Sudoku application that starts as soon as a s
 </p>
 <br>
 
-# To be implemented functionalities for Iteration 4:
 
-
-## Listening Comprehension Mode
-
-1. User Story: As a language learner,  I want to practice my understanding of spoken words in the language I am learning by hearing the words said out loud.
-
-TDD: On the main menu, the user can select if they would like to play the sudoku game in listening comprehension mode. If this mode is selected, then a board of size either 4x4, 6x6,9x9 or 12x12 is generated with prefilled numbers in the cells. By clicking on these numbers, I am able to hear the words corresponding to each number. For example if a block is labelled 1 and its corresponding word is Bonjour, then once I click on the cell with the number 1, I hear the word “Bonjour” read out. I am also shown English translations of the French words I am learning which I can select from to verify my listening comprehension.
-
-<p float="left">
-<img src="/img/listenModeHome.jpg" width="33%" />
-<img src="/img/listenModeGrid.jpg" width="33%" />
-</p>
-<br>
-
-2. User Story: As a language learner,  I want to the ability to choose which language is displayed on the board and which language the buttons are in
-
-TDD: On the Home page, the user has the ability to choose which langauge is displayed on the board and which langauge the buttons are in. For example, the button "French-English" would
-create a board with french words and buttons with english words. Contrarily, "English-French" button would generate a board with English words and would have buttons in French.
-
-
-## ------------------------------------------------------------------------------------------------
-
-
-## Implemented user stories from Iteration 2
+## Color Coordinate Board Organization - Complete
 
 1. As a sudoku game player I want an easy to understand color coordinated board that makes it easier to view the inner subdivided boxes of the grid.
 
@@ -111,6 +135,8 @@ create a board with french words and buttons with english words. Contrarily, "En
 </p>
 <br>
 
+## Sudoku Solution Verification - Complete 
+
 3. As a sudoku game player I want the ability to verify if my answers were correct after completing the board.
 
 - Once all the cells on the board have been filled, the user can select the submit button which will validate their response. A message letting the user know if their status is visible as either Correct or incorrect.
@@ -121,8 +147,36 @@ create a board with french words and buttons with english words. Contrarily, "En
 </p>
 <br>
 
+## Hint Functionality- Complete
 
-### Different devices
+2.  As a novice user, I want hints for words that I don't know, so that I can still progress through the game.
+
+- When a user gets stuck, tapping on the hint button will randomly the correct answer to a random cell.
+
+<p float="left">
+<img src="/img/hintExample.jpg" width="38%" />
+</p>
+
+## Highlight Selected cell - Complete
+
+1.  As a novice user, the user interface user interface an easy-to-use, so that I don't get frustrated while playing.
+
+- When a user plays the game, pressing on the grid will highlight it, and tapping on the word will place that word into the grid.
+
+<p float="left">
+<img src="/img/initialBoard.jpg" width="33%" />
+<img src="/img/onInsert_initial.jpg" width="33%" /> 
+<img src="/img/onInsert_done.jpg" width="33%" />
+</p>
+
+- When a user plays the game, pressing on the grid will highlight it, and then pressing the erase button will remove the word from that grid.
+
+<p float="left">
+<img src="/img/highlightCell.png" width="38%"  />
+</p>
+
+
+## Different devices and various grid sizes - Complete
 
 1. As someone who wants to learn new vocabulary, I prefer playing the language learning Sudoku game on a bigger screen to better view the contents such as longer words and enhance my gameplay experience.
 
@@ -140,72 +194,7 @@ create a board with french words and buttons with english words. Contrarily, "En
 <img src="/img/landscape-potrait.PNG" width="55%" />
 </p>
 
-### Different size grids
 
-1. As a language teacher, I want to personalize the game for my students based on their level of understanding and to meet their language learning goals without making the game unnecessarily difficult or easy.
 
-- As soon as the app is opened the user can pick the level of difficulty they would like to play with. Each level corresponds to a grid size, for example an Easy level would be of grid size 4x4, Medium is grid size 6x6 and Difficult is grid size 9x9 and Extra difficult to 12x12.
 
-<p float="left">
-<img src="/img/4x4gridboard.PNG" width="33%" />
-<img src="/img/6x6gridboard.PNG" width="33%" />
-</p>
-
-2. As a language learner who is an expert in Sudoku, I would like to play in a challenging mode which has a grid size of 12x12 so I can learn many new words and enjoy the game.
-
-- On the menu page, the user can select the level of difficulty they would like to play with and there is an option to play on a 12x12 board for an extra challenge. Once the user selects that option, a 12x12 board is generated on the screen with 12 corresponding word pairs.
-<p float="left">
-<img src="/img/12x12gridboard.PNG" width="33%" />
-</p>
-
-### Additional features
-
-For the upcoming iteration, we hope to implement the above outlined features as well additional gameplay features to enhance the user's language learning experience.
-Below are the features that have carried over from Iteration 1 which we we will be implementing for Iteration 3:
-
-1.  As a novice user, the user interface user interface an easy-to-use, so that I don't get frustrated while playing.
-
-- When a user plays the game, pressing on the grid will highlight it, and tapping on the word will place that word into the grid.
-
-<p float="left">
-<img src="/img/initialBoard.jpg" width="33%" />
-<img src="/img/onInsert_initial.jpg" width="33%" /> 
-<img src="/img/onInsert_done.jpg" width="33%" />
-</p>
-
-- When a user plays the game, pressing on the grid will highlight it, and then pressing the delete button will remove the word from that grid.
-
-<p float="left">
-<img src="/img/onDelete_initial.jpg" width="33%"  />
-<img src="/img/onDelete_2.jpg" width="33%" /> 
-<img src="/img/onDelete_done.jpg" width="33%" />
-</p>
-
-- When the user clicks on the undo button, the most recent action is reverted
-
-<p float="left">
-<img src="/img/undoimg.jpg" width="33%"  />
-</p>
-
-<br>
-
-2.  As a novice user, I want hints for words that I don't know, so that I can still progress through the game.
-
-- When a user gets stuck, tapping on hint button will randomly fill in a grid with the correct answer.
-
-<p float="left">
-<img src="/img/onHint_initial.jpg" width="33%" />
-<img src="/img/onHint_done.jpg" width="33%" />
-</p>
-
-- When a user doesn't know a word, highlighting a word then tapping on the hint button will provide an explanation of the word.
-
-<br>
-
-3.  As a language learner, I want to progressively learn new word sets, so that I can feel a sense of accomplishment as I learn the language.
-
-- When a user selects to play the progressive levels game mode, they will be given levels that they must complete before moving onto the next. Each level will not necessarily get progressively harder, rather each level is a defined category of words the user will be focusing on and to beat the level the user must complete the sudoku within a time limit. Users who try to advance to the next level without completing the previous will be prompted with an error that tells them the level they must complete to unlock this.
-
-<img src="/img/progressive.png" width="50%" />
-<br>
 
