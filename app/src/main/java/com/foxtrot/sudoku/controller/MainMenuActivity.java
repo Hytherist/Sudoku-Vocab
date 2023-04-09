@@ -26,15 +26,25 @@ public class MainMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_menu);
+
+
 
         selectedGameMode = GameMode.NORMAL;
         selectedBoardLanguage = BoardLanguage.FRENCH;
 
-        setContentView(R.layout.activity_main_menu);
+
         displayMainMenuButtons();
     }
 
     private void displayMainMenuButtons() {
+
+        Button instructionBtn = findViewById(R.id.button_instruction);
+        instructionBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, InstructionActivity.class);
+            startActivity(intent);
+        });
+
         Button next4x4Button = findViewById(R.id.button_four);
         next4x4Button.setOnClickListener(view -> {
             Intent intent = new Intent(this, SudokuActivity.class);
@@ -70,6 +80,7 @@ public class MainMenuActivity extends AppCompatActivity {
             intent.putExtra(BOARD_LANGUAGE, selectedBoardLanguage.name());
             startActivity(intent);
         });
+
 
         RadioButton frenchButton = findViewById(R.id.board_language_french);
         frenchButton.setChecked(true);

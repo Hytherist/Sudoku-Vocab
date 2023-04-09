@@ -17,20 +17,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sudoku"
         tools:targetApi="31">
+
         <activity
             android:name=".controller.MainMenuActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".controller.SudokuActivity"
             android:configChanges="orientation|screenSize"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
+
+        <activity
+            android:name=".controller.InstructionActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"></activity>
+
     </application>
 
 </manifest>

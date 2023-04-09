@@ -9,7 +9,9 @@
     <string name="twelve_by_twelve">12x12</string>
     <string name="four_by_four">4x4</string>
     <string name="six_by_six">6x6</string>
-    <string name="sudoku_title_home">SUDOKU</string>
+    <string name="sudoku_title_home">SUDOKU: LEARN A LANGUAGE</string>
+    <string name="instruction_choice">How to Play</string>
+    <string name="instructionsTxt">Instructions</string>
     <string name="easy_level">EASY LEVEL</string>
     <string name="medium_level">MEDIUM LEVEL</string>
     <string name="hard_level">HARD LEVEL</string>
@@ -20,4 +22,14 @@
     <string name="french">French</string>
     <string name="english">English</string>
     <string name="normal">Normal</string>
+    <string name="htp">INSTRUCTIONS</string>
+
+
+    <string name="linkedIn"><a href='https://www.linkedin.com/in/hchotwani/'> linkedIn:janeDoe </a></string>
+    <string name="emailText">janedoe@example.com</string>
+    <string name="phoneNumberText">+1 (604) xxx-xxx</string>
+    <string name="Experience">Experience</string>
+    <string name="Skills">Skills</string>
+    <string name="Projects">Projects</string>
+    <string name="Education">Education</string>
 </resources>
