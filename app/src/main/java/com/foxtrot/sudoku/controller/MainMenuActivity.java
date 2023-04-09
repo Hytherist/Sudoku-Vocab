@@ -23,6 +23,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private BoardLanguage selectedBoardLanguage;
 
+    private Button instrBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,19 @@ public class MainMenuActivity extends AppCompatActivity {
         selectedBoardLanguage = BoardLanguage.FRENCH;
 
         setContentView(R.layout.activity_main_menu);
+        instrBtn = (Button) findViewById(R.id.instrBtn);
+        instrBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openInstrpg();
+            }
+        });
         displayMainMenuButtons();
+    }
+
+    private void openInstrpg(){
+        Intent intent = new Intent(this, InstructionActivity.class);
+        startActivity(intent);
     }
 
     private void displayMainMenuButtons() {

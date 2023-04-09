@@ -12,7 +12,7 @@
         android:gravity="center"
         android:text="@string/sudoku_title_home"
         android:textColor="#5A13D8"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -28,7 +28,7 @@
             android:gravity="center"
             android:text="@string/game_mode"
             android:textColor="#AE98D5"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <RadioGroup
@@ -64,7 +64,7 @@
             android:gravity="center"
             android:text="@string/board_language"
             android:textColor="#AE98D5"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <RadioGroup
@@ -85,6 +85,30 @@
         </RadioGroup>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/htptitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/htptitle"
+            android:textColor="#AE98D5"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/instrBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/instructions" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,7 +124,7 @@
             android:gravity="center"
             android:text="@string/easy_level"
             android:textColor="#AE98D5"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -113,7 +137,7 @@
                 android:id="@+id/button_four"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="15sp"
                 android:text="@string/four_by_four" />
 
             <Button
@@ -140,7 +164,7 @@
             android:gravity="center"
             android:text="@string/medium_level"
             android:textColor="#AE98D5"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
@@ -165,7 +189,7 @@
             android:gravity="center"
             android:text="@string/hard_level"
             android:textColor="#AE98D5"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
