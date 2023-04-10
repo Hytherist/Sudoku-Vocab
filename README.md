@@ -154,7 +154,7 @@ TDD: There is a timer built in the Sudoku application that starts as soon as a s
 - When a user gets stuck, tapping on the hint button will randomly the correct answer to a random cell.
 
 <p float="left">
-<img src="/img/hintExample.jpg" width="38%" />
+<img src="/img/hintExample.png" width="38%" />
 </p>
 
 ## Highlight Selected cell - Complete
