@@ -1,4 +1,4 @@
-# Foxtrot
+# Sudoku Vocabulary Game
 
 
 # Iteration 4: Implemented user stories
